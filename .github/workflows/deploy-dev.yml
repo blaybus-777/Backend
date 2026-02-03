@@ -11,7 +11,10 @@ on:
 jobs:
   bulid:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main'
+    if: |
+      (github.event_name == 'pull_request' && github.event.pull_request.merged == true &&
+      (github.event.pull_request.base.ref == 'main' || github.event.pull_request.base.ref == 'develop')) ||
+      (github.event_name == 'push' && github.ref == 'refs/heads/main')
 
     steps:
       - name: 코드 가져오기
