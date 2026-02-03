@@ -1,9 +1,6 @@
 name: Blaybus-777 CI/CD Dev
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
     types: [ closed ]
   workflow_dispatch: # 수동 실행도 가능하도록
@@ -11,9 +8,7 @@ on:
 jobs:
   bulid:
     runs-on: ubuntu-latest
-    if: |
-      (github.event_name == 'pull_request' && github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main') ||
-      (github.event_name == 'push' && github.ref == 'refs/heads/main')
+    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'develop'
 
     steps:
       - name: 코드 가져오기
