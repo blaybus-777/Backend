@@ -10,7 +10,6 @@ import com.blaybus777.domain.note.controller.request.UpdateNoteRequest;
 import com.blaybus777.domain.note.controller.response.GetNoteResponse;
 import com.blaybus777.domain.note.controller.response.NoteDto;
 import com.blaybus777.domain.note.repository.NoteRepository;
-import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +27,7 @@ public class NoteService {
      * 메모 생성
      * @param request 생성 요청 객체
      */
-    public void create(@NotNull NoteCreateRequest request) {
+    public void create(NoteCreateRequest request) {
         Model model = modelRepository.findById(request.modelId())
                 .orElseThrow(() -> new BusinessException(ErrorCode.ENTITY_NOT_FOUND));
 
@@ -77,16 +76,17 @@ public class NoteService {
         List<Note> note = noteRepository.findByModel(model);
 
         List<NoteDto> noteList = new ArrayList<>();
-        note.forEach(n -> noteList.add(
-               NoteDto.builder()
-                   .noteId(n.getId())
-                   .modelId(n.getModel().getModelId())
-                   .title(n.getTitle())
-                   .content(n.getContent())
-                   .date(n.getDate())
-                   .build()
-        ));
-
+        note.forEach(n -> {
+            noteList.add(
+                NoteDto.builder()
+                    .noteId(n.getId())
+                    .modelId(n.getModel().getModelId())
+                    .title(n.getTitle())
+                    .content(n.getContent())
+                    .date(n.getDate())
+                    .build()
+            );
+        });
 
         return GetNoteResponse.builder()
                 .items(noteList)
