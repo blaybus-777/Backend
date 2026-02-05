@@ -9,11 +9,19 @@ import org.springframework.stereotype.Service;
 public class PartService {
 
     private final GetPartService getPartService;
+    private final GetPartListService getPartListService;
 
     /**
      * 특정 학습대상의 특정 부품 조회
      */
     public ListPartResponse getPart(Long modelId, Long partId) {
         return getPartService.getPart(modelId, partId);
+    }
+
+    /**
+     * 특정 학습대상의 모든 부품 목록 조회
+     */
+    public ListPartResponse getPartList(Long modelId) {
+        return getPartListService.getPartList(modelId);
     }
 }
