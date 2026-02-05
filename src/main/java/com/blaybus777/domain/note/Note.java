@@ -26,7 +26,7 @@ public class Note {
 
     @Id
     @Column(name = "note_id")
-    private String id;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "model_id")
