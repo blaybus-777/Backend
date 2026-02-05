@@ -8,9 +8,9 @@ import lombok.Getter;
 @Schema(description = "메모 조회 응답 객체")
 public class GetNoteResponse {
 
-    @Schema(description = "학습대상 모델 목록", requiredMode = Schema.RequiredMode.REQUIRED)
+    @Schema(description = "학습대상 모델 목록")
     private List<NoteDto> items;
 
-    @Schema(description = "페이지 번호", example = "1", requiredMode = Schema.RequiredMode.REQUIRED, defaultValue = "1")
+    @Schema(description = "페이지 번호", example = "1", defaultValue = "1")
     private int page;
 }
