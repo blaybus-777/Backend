@@ -2,9 +2,9 @@ package com.blaybus777.domain.note.controller.response;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.List;
-import lombok.Getter;
+import lombok.Builder;
 
-@Getter
+@Builder
 @Schema(description = "메모 조회 응답 객체")
 public class GetNoteResponse {
 
