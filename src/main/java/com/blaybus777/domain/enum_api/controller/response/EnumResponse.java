@@ -15,5 +15,5 @@ import lombok.NoArgsConstructor;
 public class EnumResponse {
 
   @Schema(description = "ENUM 목록")
-  private List<EnumDto> enumList;
+  private List<EnumDto> items;
 }
