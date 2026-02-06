@@ -24,7 +24,7 @@ public class GetStudyService {
      */
     public ListModelResponse getStudy(Long modelId) {
         Model model = modelRepository.findById(modelId)
-            .orElseThrow(() -> new BusinessException(ErrorCode.ENTITY_NOT_FOUND));
+            .orElseThrow(() -> new BusinessException(ErrorCode.MODEL_NOT_FOUND));
 
         ModelDto modelDto = new ModelDto(model);
         return new ListModelResponse(List.of(modelDto), 1);

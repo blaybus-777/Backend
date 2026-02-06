@@ -24,7 +24,7 @@ public class GetPartService {
      */
     public ListPartResponse getPart(Long modelId, Long partId) {
         Part part = partRepository.findByModelIdAndPartId(modelId, partId)
-            .orElseThrow(() -> new BusinessException(ErrorCode.ENTITY_NOT_FOUND));
+            .orElseThrow(() -> new BusinessException(ErrorCode.PART_NOT_FOUND));
 
         PartDto partDto = new PartDto(part);
         return new ListPartResponse(List.of(partDto), 1);

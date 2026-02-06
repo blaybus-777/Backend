@@ -15,6 +15,12 @@ public enum ErrorCode {
     INVALID_TYPE_VALUE(HttpStatus.BAD_REQUEST, "INVALID_TYPE_VALUE", "입력 타입이 올바르지 않습니다."),
     ENTITY_NOT_FOUND(HttpStatus.NOT_FOUND, "ENTITY_NOT_FOUND", "엔티티를 찾을 수 없습니다."),
 
+    // Model
+    MODEL_NOT_FOUND(HttpStatus.NOT_FOUND, "MODEL_NOT_FOUND", "학습대상을 찾을 수 없습니다."),
+
+    // Part
+    PART_NOT_FOUND(HttpStatus.NOT_FOUND, "PART_NOT_FOUND", "부품을 찾을 수 없습니다."),
+
     // Test
     TEST_NOT_FOUND(HttpStatus.NOT_FOUND, "TEST_NOT_FOUND", "테스트를 찾을 수 없습니다.");
 

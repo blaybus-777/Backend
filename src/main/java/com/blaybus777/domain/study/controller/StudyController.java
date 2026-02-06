@@ -148,7 +148,7 @@ public class StudyController {
         ),
         @io.swagger.v3.oas.annotations.responses.ApiResponse(
             responseCode = "404",
-            description = "모델을 찾을 수 없음",
+            description = "학습대상을 찾을 수 없음",
             content = @Content(
                 mediaType = "application/json",
                 schema = @Schema(implementation = ApiResponse.class),
@@ -156,8 +156,8 @@ public class StudyController {
                     value = """
                         {
                           "success": false,
-                          "status": "ENTITY_NOT_FOUND",
-                          "message": "엔티티를 찾을 수 없습니다.",
+                          "status": "MODEL_NOT_FOUND",
+                          "message": "학습대상을 찾을 수 없습니다.",
                           "data": null,
                           "timestamp": "2026-02-05T21:00:00+09:00"
                         }
