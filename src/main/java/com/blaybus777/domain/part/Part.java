@@ -5,12 +5,14 @@ import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Getter
+@Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "part")
 public class Part {
@@ -42,6 +44,10 @@ public class Part {
     @Column(name = "metadata", columnDefinition = "json")
     private String metadata;
 
+    @Column(name = "image_url")
+    private String imageUrl;
+
+    public Part(Model model, String code, String name, String quality, String introduction, String theory, String imageUrl) {
     @ElementCollection(fetch = FetchType.LAZY)
     @CollectionTable(
         name = "part_functional_role",
@@ -80,6 +86,10 @@ public class Part {
         this.model = model;
         this.code = code;
         this.name = name;
+        this.quality = quality;
+        this.introduction = introduction;
+        this.theory = theory;
+        this.imageUrl = imageUrl;
         this.englishName = englishName;
         this.category = category;
         this.description = description;
