@@ -28,7 +28,7 @@ public class GetPartListService {
     public ListPartResponse getPartList(Long modelId) {
         // modelId가 존재하는지 확인
         if (!modelRepository.existsById(modelId)) {
-            throw new BusinessException(ErrorCode.ENTITY_NOT_FOUND);
+            throw new BusinessException(ErrorCode.MODEL_NOT_FOUND);
         }
 
         List<Part> parts = partRepository.findAllByModelId(modelId);

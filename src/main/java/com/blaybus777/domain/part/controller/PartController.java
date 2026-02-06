@@ -90,8 +90,8 @@ public class PartController {
                     value = """
                         {
                           "success": false,
-                          "status": "ENTITY_NOT_FOUND",
-                          "message": "엔티티를 찾을 수 없습니다.",
+                          "status": "PART_NOT_FOUND",
+                          "message": "부품을 찾을 수 없습니다.",
                           "data": null,
                           "timestamp": "2026-02-05T22:00:00+09:00"
                         }
@@ -183,8 +183,8 @@ public class PartController {
                     value = """
                         {
                           "success": false,
-                          "status": "ENTITY_NOT_FOUND",
-                          "message": "엔티티를 찾을 수 없습니다.",
+                          "status": "MODEL_NOT_FOUND",
+                          "message": "학습대상을 찾을 수 없습니다.",
                           "data": null,
                           "timestamp": "2026-02-05T23:00:00+09:00"
                         }
