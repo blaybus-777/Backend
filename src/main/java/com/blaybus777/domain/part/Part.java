@@ -5,9 +5,11 @@ import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Getter
+@Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "part")
 public class Part {
@@ -36,12 +38,16 @@ public class Part {
     @Column(name = "theory", columnDefinition = "TEXT")
     private String theory;
 
-    public Part(Model model, String code, String name, String quality, String introduction, String theory) {
+    @Column(name = "image_url")
+    private String imageUrl;
+
+    public Part(Model model, String code, String name, String quality, String introduction, String theory, String imageUrl) {
         this.model = model;
         this.code = code;
         this.name = name;
         this.quality = quality;
         this.introduction = introduction;
         this.theory = theory;
+        this.imageUrl = imageUrl;
     }
 }
