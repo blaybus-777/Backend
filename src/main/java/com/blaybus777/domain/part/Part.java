@@ -6,6 +6,9 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -27,21 +30,59 @@ public class Part {
     @Column(name = "name", nullable = false, length = 255)
     private String name;
 
-    @Column(name = "quality", nullable = false, length = 255)
-    private String quality;
+    @Column(name = "english_name", length = 255)
+    private String englishName;
 
-    @Column(name = "introduction", columnDefinition = "TEXT")
-    private String introduction;
+    @Column(name = "category", length = 100)
+    private String category;
 
-    @Column(name = "theory", columnDefinition = "TEXT")
-    private String theory;
+    @Column(name = "description", columnDefinition = "TEXT")
+    private String description;
 
-    public Part(Model model, String code, String name, String quality, String introduction, String theory) {
+    @ElementCollection(fetch = FetchType.LAZY)
+    @CollectionTable(
+        name = "part_functional_role",
+        joinColumns = @JoinColumn(name = "part_id")
+    )
+    @Column(name = "functional_role", columnDefinition = "TEXT")
+    private List<String> functionalRoles = new ArrayList<>();
+
+    @ElementCollection(fetch = FetchType.LAZY)
+    @CollectionTable(
+        name = "part_engineering_theory",
+        joinColumns = @JoinColumn(name = "part_id")
+    )
+    @Column(name = "engineering_theory", columnDefinition = "TEXT")
+    private List<String> keyEngineeringTheories = new ArrayList<>();
+
+    @ElementCollection(fetch = FetchType.LAZY)
+    @CollectionTable(
+        name = "part_material",
+        joinColumns = @JoinColumn(name = "part_id")
+    )
+    @Column(name = "material", length = 255)
+    private List<String> commonMaterials = new ArrayList<>();
+
+    @ElementCollection(fetch = FetchType.LAZY)
+    @CollectionTable(
+        name = "part_learning_topic",
+        joinColumns = @JoinColumn(name = "part_id")
+    )
+    @Column(name = "learning_topic", length = 255)
+    private List<String> learningTopics = new ArrayList<>();
+
+    public Part(Model model, String code, String name, String englishName, String category,
+                String description, List<String> functionalRoles, List<String> keyEngineeringTheories,
+                List<String> commonMaterials, List<String> learningTopics) {
         this.model = model;
         this.code = code;
         this.name = name;
-        this.quality = quality;
-        this.introduction = introduction;
-        this.theory = theory;
+        this.englishName = englishName;
+        this.category = category;
+        this.description = description;
+        this.functionalRoles = functionalRoles != null ? functionalRoles : new ArrayList<>();
+        this.keyEngineeringTheories = keyEngineeringTheories != null ? keyEngineeringTheories : new ArrayList<>();
+        this.commonMaterials = commonMaterials != null ? commonMaterials : new ArrayList<>();
+        this.learningTopics = learningTopics != null ? learningTopics : new ArrayList<>();
     }
 }

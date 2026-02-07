@@ -27,7 +27,7 @@ public class PartController {
 
     @Operation(
         summary = "학습대상 특정 부품 조회",
-        description = "modelId와 partId로 특정 부품의 상세 정보를 조회합니다. 해당 부품의 ID, 코드, 이름, 소개, 재질, 이론 정보를 반환합니다."
+        description = "modelId와 partId로 특정 부품의 상세 정보를 조회합니다. 부품의 기본 정보(ID, 코드, 이름, 영문명, 카테고리, 설명), 기능적 역할, 핵심 공학 이론, 일반적인 재질, 학습 주제를 반환합니다."
     )
     @ApiResponses(value = {
         @io.swagger.v3.oas.annotations.responses.ApiResponse(
@@ -46,11 +46,29 @@ public class PartController {
                             "items": [
                               {
                                 "partId": 1,
-                                "code": "MAIN_FRAME",
-                                "name": "Main Frame",
-                                "introduction": "해당 부품은 ~~입니다.",
-                                "quality": "~~ 재질",
-                                "theory": "드론의 모든 하위 시스템 ~.."
+                                "code": "arm_gear",
+                                "name": "암 기어",
+                                "englishName": "Arm Gear",
+                                "category": "단일 부품",
+                                "description": "드론 암의 회전이나 위치 고정을 위해 사용되는 기어 부품으로, 구동부의 회전 운동을 구조물로 전달한다.",
+                                "functionalRoles": [
+                                  "회전 운동을 암 구조에 전달",
+                                  "암의 각도와 위치를 일정하게 유지",
+                                  "구동부와 구조부를 기계적으로 연결"
+                                ],
+                                "keyEngineeringTheories": [
+                                  "기어 맞물림을 통한 회전 운동 전달 원리",
+                                  "기어비에 따른 속도 및 토크 변화 개념"
+                                ],
+                                "commonMaterials": [
+                                  "POM(아세탈)",
+                                  "나일론(PA)",
+                                  "알루미늄"
+                                ],
+                                "learningTopics": [
+                                  "기어 전달 메커니즘",
+                                  "기계식 구동 구조 이해"
+                                ]
                               }
                             ],
                             "page": 1
@@ -112,7 +130,7 @@ public class PartController {
 
     @Operation(
         summary = "학습대상 부품 목록 조회",
-        description = "modelId로 해당 학습대상의 모든 부품 목록을 조회합니다. 해당 모델에 포함된 모든 부품의 정보(ID, 코드, 이름, 소개, 재질, 이론)를 배열로 반환합니다."
+        description = "modelId로 해당 학습대상 조립도에 포함된 모든 단일 부품 목록을 조회합니다. 각 부품의 상세 정보(기본 정보, 기능적 역할, 핵심 공학 이론, 일반적인 재질, 학습 주제)를 배열로 반환합니다."
     )
     @ApiResponses(value = {
         @io.swagger.v3.oas.annotations.responses.ApiResponse(
@@ -131,19 +149,54 @@ public class PartController {
                             "items": [
                               {
                                 "partId": 1,
-                                "code": "MAIN_FRAME",
-                                "name": "Main Frame",
-                                "introduction": "해당 부품은 ~~입니다.",
-                                "quality": "~~ 재질",
-                                "theory": "드론의 모든 하위 시스템 ~.."
+                                "code": "main_frame",
+                                "name": "메인 프레임",
+                                "englishName": "Main Frame",
+                                "category": "단일 부품",
+                                "description": "드론의 모든 부품이 결합되는 중심 구조물로, 기체의 전체 형상을 결정한다.",
+                                "functionalRoles": [
+                                  "모든 부품의 기준 구조 제공",
+                                  "하중을 전체 구조로 분산",
+                                  "드론의 형태 유지"
+                                ],
+                                "keyEngineeringTheories": [
+                                  "하중 분산을 고려한 프레임 구조 원리",
+                                  "대칭 구조에 의한 안정성 확보"
+                                ],
+                                "commonMaterials": [
+                                  "ABS 플라스틱",
+                                  "나일론 강화 소재",
+                                  "카본 복합재"
+                                ],
+                                "learningTopics": [
+                                  "구조 프레임 설계",
+                                  "드론 전체 구조 이해"
+                                ]
                               },
                               {
                                 "partId": 2,
-                                "code": "MAIN_FRAME_MIR",
-                                "name": "Main Frame_MIR",
-                                "quality": "~~ 재질",
-                                "introduction": "해당 부품은 ~~입니다.",
-                                "theory": "해당 부품은 ~.."
+                                "code": "main_frame_mir",
+                                "name": "메인 프레임(미러)",
+                                "englishName": "Main Frame_MIR",
+                                "category": "단일 부품",
+                                "description": "메인 프레임의 좌우 대칭 구조를 이루는 부품으로, 동일 구조를 반대 방향으로 사용한다.",
+                                "functionalRoles": [
+                                  "반대편 구조 구성",
+                                  "기체 무게 균형 유지",
+                                  "조립 단순화"
+                                ],
+                                "keyEngineeringTheories": [
+                                  "좌우 대칭 설계의 구조적 장점",
+                                  "부품 공용화 설계 개념"
+                                ],
+                                "commonMaterials": [
+                                  "ABS 플라스틱",
+                                  "나일론 강화 소재"
+                                ],
+                                "learningTopics": [
+                                  "대칭 구조 설계",
+                                  "제조 효율성 개념"
+                                ]
                               }
                             ],
                             "page": 2
