@@ -8,5 +8,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface NoteRepository extends JpaRepository<Note, Long> {
-    List<Note> findByModel(Model model);
+    /**
+     * 특정 모델의 메모 목록 조회 (ID 내림차순)
+     */
+    List<Note> findByModelOrderByIdDesc(Model model);
 }

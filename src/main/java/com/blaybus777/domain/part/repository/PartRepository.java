@@ -17,8 +17,8 @@ public interface PartRepository extends JpaRepository<Part, Long> {
     Optional<Part> findByModelIdAndPartId(@Param("modelId") Long modelId, @Param("partId") Long partId);
 
     /**
-     * modelId로 모든 부품 조회
+     * modelId로 모든 부품 조회 (ID 내림차순)
      */
-    @Query("SELECT p FROM Part p WHERE p.model.modelId = :modelId")
+    @Query("SELECT p FROM Part p WHERE p.model.modelId = :modelId ORDER BY p.partId DESC")
     List<Part> findAllByModelId(@Param("modelId") Long modelId);
 }

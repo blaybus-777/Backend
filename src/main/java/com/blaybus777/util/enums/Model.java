@@ -7,11 +7,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum Model {
 
-    DRONE("드론"),
+    Quadcopter_DRONE("쿼트콥터 드론"),
     LEAF_SPRING("리프 스프링"),
+    MACHINE_VICE("머신 바이스"),
     ROBOT_ARM("로봇 암"),
     ROBOT_GRIPPER("로봇 그리퍼"),
-    MACHINE_VICE("머신 바이스"),
     SUSPENSION("서스펜션"),
     V4_ENGINE("V4 엔진");
 

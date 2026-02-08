@@ -66,14 +66,14 @@ public class NoteService {
     }
 
     /**
-     * 모델에 대한 메모 목록 조회
+     * 모델에 대한 메모 목록 조회 (ID 내림차순)
      * @param modelId 모델 ID
      * @return 모델에 대한 메모 목록 반환
      */
     public GetNoteResponse geNoteList(Long modelId) {
         Model model = modelRepository.findById(modelId)
                 .orElseThrow(() -> new BusinessException(ErrorCode.ENTITY_NOT_FOUND));
-        List<Note> note = noteRepository.findByModel(model);
+        List<Note> note = noteRepository.findByModelOrderByIdDesc(model);
 
         List<NoteDto> noteList = new ArrayList<>();
         note.forEach(n -> {
