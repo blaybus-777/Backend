@@ -47,7 +47,6 @@ public class Part {
     @Column(name = "image_url")
     private String imageUrl;
 
-    public Part(Model model, String code, String name, String quality, String introduction, String theory, String imageUrl) {
     @ElementCollection(fetch = FetchType.LAZY)
     @CollectionTable(
         name = "part_functional_role",
@@ -82,13 +81,10 @@ public class Part {
 
     public Part(Model model, String code, String name, String englishName, String category,
                 String description, List<String> functionalRoles, List<String> keyEngineeringTheories,
-                List<String> commonMaterials, List<String> learningTopics) {
+                List<String> commonMaterials, List<String> learningTopics, String imageUrl) {
         this.model = model;
         this.code = code;
         this.name = name;
-        this.quality = quality;
-        this.introduction = introduction;
-        this.theory = theory;
         this.imageUrl = imageUrl;
         this.englishName = englishName;
         this.category = category;
