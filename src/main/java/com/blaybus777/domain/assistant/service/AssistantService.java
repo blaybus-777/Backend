@@ -11,4 +11,6 @@ public class AssistantService {
 
     private final AssistantRepository assistantRepository;
     private final HistoryRepository historyRepository;
+
+
 }
