@@ -41,6 +41,9 @@ public class PartDto {
     @Schema(description = "학습 주제 목록", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
     private List<String> learningTopics;
 
+    @Schema(description = "호버 설명", example = "~ 그런 모델", requiredMode = Schema.RequiredMode.REQUIRED)
+    private String hoverDescription;
+
     public PartDto(Part part) {
         this.partId = part.getPartId();
         this.code = part.getCode();
@@ -48,6 +51,7 @@ public class PartDto {
         this.englishName = part.getEnglishName();
         this.category = part.getCategory();
         this.description = part.getDescription();
+        this.hoverDescription = part.getHoverDescription();
         this.functionalRoles = new ArrayList<>(part.getFunctionalRoles());
         this.keyEngineeringTheories = new ArrayList<>(part.getKeyEngineeringTheories());
         this.commonMaterials = new ArrayList<>(part.getCommonMaterials());
