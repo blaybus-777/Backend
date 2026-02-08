@@ -47,6 +47,9 @@ public class Part {
     @Column(name = "image_url")
     private String imageUrl;
 
+    @Column(name = "hover_description")
+    private String hoverDescription;
+
     @ElementCollection(fetch = FetchType.LAZY)
     @CollectionTable(
         name = "part_functional_role",
