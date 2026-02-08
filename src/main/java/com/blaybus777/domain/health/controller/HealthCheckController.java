@@ -12,9 +12,4 @@ public class HealthCheckController {
     public String health() {
         return "OK";
     }
-
-    @GetMapping("/")
-    public String health2() {
-        return "OK";
-    }
 }
