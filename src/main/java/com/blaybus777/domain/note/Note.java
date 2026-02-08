@@ -38,9 +38,11 @@ public class Note {
     private Model model;
 
     @Comment("제목")
+    @Column(columnDefinition = "TEXT")
     private String title;
 
     @Comment("내용")
+    @Column(columnDefinition = "TEXT")
     private String content;
 
     @Comment("날짜")
