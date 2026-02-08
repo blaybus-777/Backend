@@ -41,6 +41,12 @@ public class Model {
     @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 
+    /**
+     * AI 전달용 원본 메타데이터 (JSON)
+     */
+    @Column(name = "metadata", columnDefinition = "json")
+    private String metadata;
+
     @ElementCollection(fetch = FetchType.LAZY)
     @CollectionTable(
         name = "model_tag",

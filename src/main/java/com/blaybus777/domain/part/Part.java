@@ -39,6 +39,9 @@ public class Part {
     @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 
+    @Column(name = "metadata", columnDefinition = "json")
+    private String metadata;
+
     @ElementCollection(fetch = FetchType.LAZY)
     @CollectionTable(
         name = "part_functional_role",
