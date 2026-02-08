@@ -44,6 +44,7 @@ public class ModelRepositoryCustomImpl implements ModelRepositoryCustom {
         return queryFactory
             .selectFrom(model)
             .where(builder)
+            .orderBy(model.modelId.desc())
             .fetch();
     }
 }
