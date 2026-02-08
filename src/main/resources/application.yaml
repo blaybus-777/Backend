@@ -34,15 +34,12 @@ spring:
           # 텍스트를 숫자 벡터로 바꿔주는 모델(문서 의미 변환) -> PDF 올릴 시 필요할 것 같아서 선택했습니다. 모델은 large과 small이 있는데 large이 비용이 좀 들긴 하지만 정확도가 굉장히 높아 사용하면 좋을 것 같다고 판단하여 선택해 보았습니다.
           model: text-embedding-3-large
 
-#  cloud:
-#    aws:
-#      credentials:
-#        access-key: ${AWS_ACCESS_KEY}
-#        secret-key: ${AWS_SECRET_KEY}
-#      s3:
-#        bucket: ${AWS_S3_BUCKET}
-#      region:
-#        static: ap-northeast-2
-#        auto: false
-#      stack:
-#        auto: false
+  cloud:
+    aws:
+      credentials:
+        access-key: ${AWS_ACCESS_KEY}
+        secret-key: ${AWS_SECRET_KEY}
+      s3:
+        bucket: ${AWS_S3_BUCKET}
+      region:
+        static: ap-northeast-2

@@ -47,6 +47,9 @@ public class Model {
     @Column(name = "metadata", columnDefinition = "json")
     private String metadata;
 
+    @Column(name = "image_url")
+    private String imageUrl;
+
     @ElementCollection(fetch = FetchType.LAZY)
     @CollectionTable(
         name = "model_tag",
