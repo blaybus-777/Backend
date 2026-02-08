@@ -19,10 +19,10 @@ public class ListModelService {
     private final ModelRepository modelRepository;
 
     /**
-     * 학습대상 목록 조회
+     * 학습대상 목록 조회 (ID 내림차순)
      */
     public ListModelResponse getModelList() {
-        List<Model> models = modelRepository.findAll();
+        List<Model> models = modelRepository.findAllByOrderByModelIdDesc();
 
         List<ModelDto> items = models.stream()
             .map(ModelDto::new)
