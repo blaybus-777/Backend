@@ -2,8 +2,6 @@ package com.blaybus777.domain.s3_file.service;
 
 import com.blaybus777.common.exception.BusinessException;
 import com.blaybus777.common.response.ErrorCode;
-import com.blaybus777.domain.part.Part;
-import com.blaybus777.domain.part.repository.PartRepository;
 import jakarta.transaction.Transactional;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
@@ -27,19 +25,15 @@ public class S3FileService {
   private String bucket;
 
   private final S3Client s3Client;
-  private final PartRepository partRepository;
 
   /**
    * S3 파일 업로드 메서드
    * @param file : 파일
    * @return : 업로드된 S3 Url 반환
    */
-  public String uploadFile(MultipartFile file, Long partId) {
+  public String uploadFile(MultipartFile file) {
     String originalFileName = file.getOriginalFilename();
     String fileName = UUID.randomUUID() + "-" + originalFileName;
-
-    Part part = this.partRepository.findById(partId)
-            .orElseThrow(() -> new BusinessException(ErrorCode.ENTITY_NOT_FOUND));
 
     PutObjectRequest putObjectRequest = PutObjectRequest.builder()
       .bucket(bucket)
@@ -49,13 +43,8 @@ public class S3FileService {
 
     try {
       s3Client.putObject(putObjectRequest, RequestBody.fromInputStream(file.getInputStream(), file.getSize()));
-      String s3FileUrl = String.format("https://%s.s3.ap-northeast-2.amazonaws.com/%s", bucket, fileName);
 
-      // 부품의 이미지 저장
-      part.setImageUrl(s3FileUrl);
-      this.partRepository.save(part); // 수정
-
-      return s3FileUrl;
+      return String.format("https://%s.s3.ap-northeast-2.amazonaws.com/%s", bucket, fileName);;
     } catch (Exception e) {
       throw new BusinessException(ErrorCode.INTERNAL_SERVER_ERROR);
     }
@@ -66,11 +55,8 @@ public class S3FileService {
    * @param fileUrl : S3 Url
    */
   @Transactional
-  public void deleteFile(String fileUrl, Long partId) {
+  public void deleteFile(String fileUrl) {
     String fileName = fileUrl.substring(fileUrl.lastIndexOf("/") + 1);
-
-    Part part = partRepository.findById(partId)
-            .orElseThrow(() -> new BusinessException(ErrorCode.ENTITY_NOT_FOUND));
 
     DeleteObjectRequest deleteObjectRequest = DeleteObjectRequest.builder()
       .bucket(bucket)
@@ -78,7 +64,5 @@ public class S3FileService {
       .build();
 
     s3Client.deleteObject(deleteObjectRequest);
-    part.setImageUrl(null);
-    this.partRepository.save(part); // 수정
   }
 }

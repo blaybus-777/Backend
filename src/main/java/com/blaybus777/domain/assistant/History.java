@@ -53,4 +53,7 @@ public class History {
 
     @Comment("메시지(질문/답변)")
     private String message;
+
+    @Comment("이미지/PDF 파일")
+    private String fileUrl;
 }
