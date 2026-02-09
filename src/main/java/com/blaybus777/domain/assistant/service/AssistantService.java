@@ -237,6 +237,11 @@ public class AssistantService {
             .uri("/responses")
             .bodyValue(json)
             .retrieve()
+            .onStatus(
+        status -> status.isError(),
+        response -> response.bodyToMono(String.class)
+                .map(body -> new RuntimeException("OpenAI Error: " + body))
+            )
             .bodyToMono(String.class)
             .block();
 
