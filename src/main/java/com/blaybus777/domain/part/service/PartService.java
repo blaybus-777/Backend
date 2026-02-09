@@ -19,9 +19,11 @@ public class PartService {
     }
 
     /**
-     * 특정 학습대상의 모든 부품 목록 조회
+     * 특정 학습대상의 부품 목록 조회
+     * @param modelId 모델 ID
+     * @param flat true: 평면 리스트, false: 계층 구조
      */
-    public ListPartResponse getPartList(Long modelId) {
-        return getPartListService.getPartList(modelId);
+    public ListPartResponse getPartList(Long modelId, boolean flat) {
+        return getPartListService.getPartList(modelId, flat);
     }
 }

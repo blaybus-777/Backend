@@ -28,4 +28,11 @@ public interface PartRepository extends JpaRepository<Part, Long> {
      */
     @Query("SELECT p FROM Part p WHERE p.model.modelId = :modelId AND p.parent IS NULL ORDER BY p.orderIndex ASC")
     List<Part> findRootPartsByModelId(@Param("modelId") Long modelId);
+
+    /**
+     * modelId로 단일 부품만 조회 (평면 리스트 - hierarchyLevel=2)
+     * orderIndex 오름차순 정렬
+     */
+    @Query("SELECT p FROM Part p WHERE p.model.modelId = :modelId AND p.hierarchyLevel = 2 ORDER BY p.orderIndex ASC")
+    List<Part> findFlatPartsByModelId(@Param("modelId") Long modelId);
 }
