@@ -54,7 +54,7 @@ public class AssistantService {
             );
         });
 
-        String json;
+        String json = "";
 
         if (!files.isEmpty()) {
             TextRequestBody requestBody = TextRequestBody.builder()
@@ -115,18 +115,18 @@ public class AssistantService {
                    "현재 화면의 오브젝트 및 공학적 학습 주제와는 직접적인 연관이 없는 질문입니다. 화면과 관련된 공학적 질문을 해 주시면 설명드리겠습니다."
                 """)
                 .input(
-//                    List.of(
-//                        TextRequestInputList.builder()
-//                            .role("user")
-//                            .content(
-//                                List.of(
-//                                    InputBody.builder()
-//                                        .type("input_text")
-//                                        .text(request.question())
-//                                        .build()
-//                                )
-//                            )
-//                            .build(),
+                    List.of(
+                        TextRequestInputList.builder()
+                            .role("user")
+                            .content(
+                                List.of(
+                                    InputBody.builder()
+                                        .type("input_text")
+                                        .text(request.question())
+                                        .build()
+                                )
+                            )
+                            .build()
 //                        ImageRequestInputList.builder()
 //                            .role("user")
 //                            .content(
@@ -137,11 +137,11 @@ public class AssistantService {
 //                                        .build()
 //                                )
 //                            ).build()
-//                    )
+                    )
                 ).tools(List.of(
                     Map.of("type", "web_search")
                 )).build();
-            json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(requestBody);
+//            json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(requestBody);
         } else {
 
         }
@@ -155,7 +155,7 @@ public class AssistantService {
 
         try {
             JsonNode jsonNode = objectMapper.readTree(modelResponse);
-            String previous_response_id = jsonNode.get("id").asString();
+//            String previous_response_id = jsonNode.get("id").asString();
             System.out.println(modelResponse);
 
             System.out.println("Me: " + request.question());
