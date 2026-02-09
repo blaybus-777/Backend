@@ -50,6 +50,31 @@ public class Part {
     @Column(name = "hover_description")
     private String hoverDescription;
 
+    /**
+     * 계층 구조: 상위 부품 (자기 참조)
+     */
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "parent_id")
+    private Part parent;
+
+    /**
+     * 계층 구조: 하위 부품들
+     */
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
+    private List<Part> children = new ArrayList<>();
+
+    /**
+     * 계층 레벨 (0: 루트, 1: 중간 그룹, 2: 단일 부품)
+     */
+    @Column(name = "hierarchy_level")
+    private Integer hierarchyLevel;
+
+    /**
+     * 같은 레벨 내 정렬 순서
+     */
+    @Column(name = "order_index")
+    private Integer orderIndex;
+
     @ElementCollection(fetch = FetchType.LAZY)
     @CollectionTable(
         name = "part_functional_role",

@@ -44,6 +44,18 @@ public class PartDto {
     @Schema(description = "호버 설명", example = "~ 그런 모델", requiredMode = Schema.RequiredMode.REQUIRED)
     private String hoverDescription;
 
+    @Schema(description = "상위 부품 ID", example = "1", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+    private Long parentId;
+
+    @Schema(description = "계층 레벨 (0: 루트, 1: 중간 그룹, 2: 단일 부품)", example = "2", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+    private Integer hierarchyLevel;
+
+    @Schema(description = "정렬 순서", example = "1", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+    private Integer orderIndex;
+
+    @Schema(description = "하위 부품 목록", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+    private List<PartDto> children;
+
     public PartDto(Part part) {
         this.partId = part.getPartId();
         this.code = part.getCode();
@@ -52,9 +64,17 @@ public class PartDto {
         this.category = part.getCategory();
         this.description = part.getDescription();
         this.hoverDescription = part.getHoverDescription();
+        this.parentId = part.getParent() != null ? part.getParent().getPartId() : null;
+        this.hierarchyLevel = part.getHierarchyLevel();
+        this.orderIndex = part.getOrderIndex();
         this.functionalRoles = new ArrayList<>(part.getFunctionalRoles());
         this.keyEngineeringTheories = new ArrayList<>(part.getKeyEngineeringTheories());
         this.commonMaterials = new ArrayList<>(part.getCommonMaterials());
         this.learningTopics = new ArrayList<>(part.getLearningTopics());
+
+        // 재귀적으로 하위 부품 변환
+        this.children = part.getChildren().stream()
+            .map(PartDto::new)
+            .collect(java.util.stream.Collectors.toList());
     }
 }

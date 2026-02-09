@@ -23,7 +23,8 @@ public class GetPartListService {
     private final ModelRepository modelRepository;
 
     /**
-     * 특정 학습대상의 모든 부품 목록 조회
+     * 특정 학습대상의 부품 목록 조회 (계층 구조)
+     * 루트 부품만 반환하며, 각 부품의 하위 부품은 children 필드에 재귀적으로 포함됨
      */
     public ListPartResponse getPartList(Long modelId) {
         // modelId가 존재하는지 확인
@@ -31,9 +32,11 @@ public class GetPartListService {
             throw new BusinessException(ErrorCode.MODEL_NOT_FOUND);
         }
 
-        List<Part> parts = partRepository.findAllByModelId(modelId);
+        // 루트 부품만 조회 (parent가 null인 것)
+        List<Part> rootParts = partRepository.findRootPartsByModelId(modelId);
 
-        List<PartDto> partDtos = parts.stream()
+        // PartDto로 변환 (재귀적으로 children 포함)
+        List<PartDto> partDtos = rootParts.stream()
             .map(PartDto::new)
             .collect(Collectors.toList());
 
