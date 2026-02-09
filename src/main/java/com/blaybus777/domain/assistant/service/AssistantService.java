@@ -228,6 +228,7 @@ public class AssistantService {
             json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(requestBody);
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println("여기 문제임!!! -> ");
             throw new BusinessException(ErrorCode.INTERNAL_SERVER_ERROR);
         }
 
@@ -287,6 +288,7 @@ public class AssistantService {
                     .build();
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println("여기 문제임!!!2 -> ");
             throw new BusinessException(ErrorCode.INTERNAL_SERVER_ERROR);
         }
     }
