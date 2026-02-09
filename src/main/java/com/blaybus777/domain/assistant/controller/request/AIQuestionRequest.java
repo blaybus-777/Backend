@@ -1,5 +1,6 @@
 package com.blaybus777.domain.assistant.controller.request;
 
+import com.blaybus777.util.enums.AIContentType;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(description = "AI 질문 요청 객체")
@@ -12,5 +13,8 @@ public record AIQuestionRequest(
     Long partId,
 
     @Schema(description = "질문")
-    String question
+    String question,
+
+    @Schema(description = "퀵액션/질문/AI답변")
+    AIContentType contentType
 ) { }

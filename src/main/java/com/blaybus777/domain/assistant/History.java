@@ -1,8 +1,11 @@
 package com.blaybus777.domain.assistant;
 
+import com.blaybus777.domain.part.Part;
 import com.blaybus777.util.enums.AIContentType;
 import com.blaybus777.util.enums.AIRole;
+import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -13,6 +16,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -47,13 +52,19 @@ public class History {
     @Comment("역할(user/assistant)")
     private AIContentType type;
 
-    @Comment("부품 코드")
-    @Column(name = "part_code")
-    private String partCode;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "part_id")
+    private Part partId;
 
     @Comment("메시지(질문/답변)")
+    @Column(columnDefinition = "TEXT")
     private String message;
 
-    @Comment("이미지/PDF 파일")
-    private String fileUrl;
+    @ElementCollection(fetch = FetchType.LAZY)
+    @CollectionTable(
+        name = "history_files",
+        joinColumns = @JoinColumn(name = "history_id")
+    )
+    @Column(name = "files")
+    private List<String> files = new ArrayList<>();
 }
