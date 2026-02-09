@@ -31,10 +31,10 @@ public class S3FileController {
    * @param file : 파일
    * @return : S3 파일 Url 반환
    */
-  @PostMapping(value = "/upload/{partId}", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
+  @PostMapping(value = "/upload", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
   @Operation(summary = "S3 파일 업로드", description = "S3 파일 업로드 엔드포인트")
-  public ApiResponse<String> uploadFile(@RequestPart MultipartFile file, @PathVariable Long partId) {
-    return ApiResponse.success(s3Service.uploadFile(file, partId));
+  public ApiResponse<String> uploadFile(@RequestPart MultipartFile file) {
+    return ApiResponse.success(s3Service.uploadFile(file));
   }
 
   /**
@@ -42,10 +42,10 @@ public class S3FileController {
    * @param s3Url : S3 Url
    * @return : 공통 응답 객체 반환
    */
-  @DeleteMapping(value = "/delete/{partId}")
+  @DeleteMapping(value = "/delete")
   @Operation(summary = "S3 파일 삭제", description = "S3 파일 삭제 엔드포인트")
-  public ApiResponse<Void> deleteFile(@RequestParam("s3Url") String s3Url, @PathVariable Long partId) {
-    s3Service.deleteFile(s3Url, partId);
+  public ApiResponse<Void> deleteFile(@RequestParam("s3Url") String s3Url) {
+    s3Service.deleteFile(s3Url);
     return ApiResponse.success(null);
   }
 }
