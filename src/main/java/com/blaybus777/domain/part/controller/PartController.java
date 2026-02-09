@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @Tag(name = "부품 관련 API", description = "학습대상 부품 조회 API")
@@ -130,7 +131,9 @@ public class PartController {
 
     @Operation(
         summary = "학습대상 부품 목록 조회",
-        description = "modelId로 해당 학습대상 조립도에 포함된 모든 단일 부품 목록을 조회합니다. 각 부품의 상세 정보(기본 정보, 기능적 역할, 핵심 공학 이론, 일반적인 재질, 학습 주제)를 배열로 반환합니다."
+        description = "modelId로 해당 학습대상 조립도에 포함된 부품 목록을 조회합니다. flat 파라미터로 응답 형식을 선택할 수 있습니다.\n\n" +
+                "- flat=true: 단일 부품만 평면 배열로 반환 (부품 리스트 화면용)\n" +
+                "- flat=false (기본값): 계층 구조 트리로 반환 (하이라키 테이블 화면용)"
     )
     @ApiResponses(value = {
         @io.swagger.v3.oas.annotations.responses.ApiResponse(
@@ -249,8 +252,10 @@ public class PartController {
     @GetMapping("/list/{modelId}")
     public ResponseEntity<ApiResponse<ListPartResponse>> getPartList(
         @Parameter(description = "모델 ID", required = true, example = "1")
-        @PathVariable Long modelId
+        @PathVariable Long modelId,
+        @Parameter(description = "평면 리스트 여부 (true: 단일 부품만, false: 계층 구조)", example = "false")
+        @RequestParam(required = false, defaultValue = "false") boolean flat
     ) {
-        return ResponseEntity.ok(ApiResponse.success(partService.getPartList(modelId)));
+        return ResponseEntity.ok(ApiResponse.success(partService.getPartList(modelId, flat)));
     }
 }
