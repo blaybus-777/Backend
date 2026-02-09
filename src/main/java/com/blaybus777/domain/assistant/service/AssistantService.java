@@ -81,7 +81,6 @@ public class AssistantService {
         List<Object> requestJson = new ArrayList<>();
         List<String> fileList = new ArrayList<>();
 
-        AtomicBoolean isRun = new AtomicBoolean(false);
         if (files != null && !files.isEmpty()) {
             // 파일(이미지/PDF)
             files.forEach(file -> {
@@ -89,6 +88,18 @@ public class AssistantService {
                 fileList.add(s3FileUrl);
 
                 switch (Objects.requireNonNull(file.getContentType())) {
+                    case "text/plain" -> requestJson.add(
+                        TextFileRequestInputList.builder()
+                            .role("user")
+                            .content(
+                                List.of(
+                                    InputBody.builder()
+                                        .type("input_text")
+                                        .text(readMultipartText(file))
+                                        .build()
+                                )
+                            ).build()
+                    );
                     case "image/jpeg", "image/png" -> requestJson.add(
                         ImageRequestInputList.builder()
                             .role("user")
@@ -109,18 +120,6 @@ public class AssistantService {
                                     FileInputBody.builder()
                                         .type("input_file")
                                         .file_url(s3FileUrl)
-                                        .build()
-                                )
-                            ).build()
-                    );
-                    case "text/plain" -> requestJson.add(
-                        TextFileRequestInputList.builder()
-                            .role("user")
-                            .content(
-                                List.of(
-                                    InputBody.builder()
-                                        .type("input_text")
-                                        .text(readMultipartText(file) + "\n\n질문: " + request.question())
                                         .build()
                                 )
                             ).build()
@@ -159,20 +158,18 @@ public class AssistantService {
         );
 
         // 질문
-        if (!isRun.get()) {
-            requestJson.add(
-                TextRequestInputList.builder()
-                    .role("user")
-                    .content(
-                        List.of(
-                            InputBody.builder()
-                                .type("input_text")
-                                .text(request.question())
-                                .build()
-                        )
-                    ).build()
-            );
-        }
+        requestJson.add(
+            TextRequestInputList.builder()
+                .role("user")
+                .content(
+                    List.of(
+                        InputBody.builder()
+                            .type("input_text")
+                            .text("질문: " + request.question())
+                            .build()
+                    )
+                ).build()
+        );
 
         Assistant assistant = assistantRepository.findById(model.getModelId()).orElse(null);
 
