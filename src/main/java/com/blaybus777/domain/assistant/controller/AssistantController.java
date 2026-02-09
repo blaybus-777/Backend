@@ -7,6 +7,7 @@ import com.blaybus777.domain.assistant.controller.response.ListQuestionResponse;
 import com.blaybus777.domain.assistant.service.AssistantService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -36,10 +37,10 @@ public class AssistantController {
     @PostMapping(value = "/question", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
     @Operation(summary = "AI 질문", description = "AI 질문/답변 엔드포인트")
     public ApiResponse<ListQuestionResponse> question(
-        @RequestPart MultipartFile file,
+        @RequestPart List<MultipartFile> file,
         @RequestBody AIQuestionRequest request
     ) {
-        return ApiResponse.success(null);
+        return ApiResponse.success(assistantService.question(file, request));
     }
 
     /**

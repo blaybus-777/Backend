@@ -44,7 +44,7 @@ public class S3FileService {
     try {
       s3Client.putObject(putObjectRequest, RequestBody.fromInputStream(file.getInputStream(), file.getSize()));
 
-      return String.format("https://%s.s3.ap-northeast-2.amazonaws.com/%s", bucket, fileName);;
+      return String.format("https://%s.s3.ap-northeast-2.amazonaws.com/%s", bucket, fileName);
     } catch (Exception e) {
       throw new BusinessException(ErrorCode.INTERNAL_SERVER_ERROR);
     }
