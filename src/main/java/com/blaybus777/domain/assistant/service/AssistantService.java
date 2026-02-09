@@ -12,6 +12,8 @@ import com.blaybus777.domain.assistant.dto.FileRequestInputList;
 import com.blaybus777.domain.assistant.dto.ImageInputBody;
 import com.blaybus777.domain.assistant.dto.ImageRequestInputList;
 import com.blaybus777.domain.assistant.dto.InputBody;
+import com.blaybus777.domain.assistant.dto.TextFileInputBody;
+import com.blaybus777.domain.assistant.dto.TextFileRequestInputList;
 import com.blaybus777.domain.assistant.dto.TextRequestBody;
 import com.blaybus777.domain.assistant.dto.TextRequestInputList;
 import com.blaybus777.domain.assistant.repository.AssistantRepository;
@@ -19,24 +21,31 @@ import com.blaybus777.domain.assistant.repository.HistoryRepository;
 import com.blaybus777.domain.model.Model;
 import com.blaybus777.domain.model.repository.ModelRepository;
 import com.blaybus777.domain.part.Part;
-import com.blaybus777.domain.part.controller.response.PartDto;
 import com.blaybus777.domain.part.repository.PartRepository;
 import com.blaybus777.domain.s3_file.service.S3FileService;
 import com.blaybus777.util.enums.AIContentType;
 import com.blaybus777.util.enums.AIRole;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
+import org.springframework.http.client.MultipartBodyBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 
 @Service
@@ -72,6 +81,7 @@ public class AssistantService {
         List<Object> requestJson = new ArrayList<>();
         List<String> fileList = new ArrayList<>();
 
+        AtomicBoolean isRun = new AtomicBoolean(false);
         if (files != null && !files.isEmpty()) {
             // 파일(이미지/PDF)
             files.forEach(file -> {
@@ -80,28 +90,40 @@ public class AssistantService {
 
                 switch (Objects.requireNonNull(file.getContentType())) {
                     case "image/jpeg", "image/png" -> requestJson.add(
-                            ImageRequestInputList.builder()
-                                .role("user")
-                                .content(
-                                    List.of(
-                                        ImageInputBody.builder()
-                                            .type("input_image")
-                                            .image_url(s3FileUrl)
-                                            .build()
-                                    )
-                                ).build()
+                        ImageRequestInputList.builder()
+                            .role("user")
+                            .content(
+                                List.of(
+                                    ImageInputBody.builder()
+                                        .type("input_image")
+                                        .image_url(s3FileUrl)
+                                        .build()
+                                )
+                            ).build()
                     );
                     case "application/pdf" -> requestJson.add(
-                            FileRequestInputList.builder()
-                                .role("user")
-                                .content(
-                                    List.of(
-                                        FileInputBody.builder()
-                                            .type("input_file")
-                                            .file_url(s3FileUrl)
-                                            .build()
-                                    )
-                                ).build()
+                        FileRequestInputList.builder()
+                            .role("user")
+                            .content(
+                                List.of(
+                                    FileInputBody.builder()
+                                        .type("input_file")
+                                        .file_url(s3FileUrl)
+                                        .build()
+                                )
+                            ).build()
+                    );
+                    case "text/plain" -> requestJson.add(
+                        TextFileRequestInputList.builder()
+                            .role("user")
+                            .content(
+                                List.of(
+                                    InputBody.builder()
+                                        .type("input_text")
+                                        .text(readMultipartText(file) + "\n\n질문: " + request.question())
+                                        .build()
+                                )
+                            ).build()
                     );
                     default -> throw new IllegalStateException("Unexpected value: " + Objects.requireNonNull(file.getContentType()));
                 }
@@ -137,18 +159,20 @@ public class AssistantService {
         );
 
         // 질문
-        requestJson.add(
-            TextRequestInputList.builder()
-                .role("user")
-                .content(
-                    List.of(
-                        InputBody.builder()
-                            .type("input_text")
-                            .text(request.question())
-                            .build()
-                    )
-                ).build()
-        );
+        if (!isRun.get()) {
+            requestJson.add(
+                TextRequestInputList.builder()
+                    .role("user")
+                    .content(
+                        List.of(
+                            InputBody.builder()
+                                .type("input_text")
+                                .text(request.question())
+                                .build()
+                        )
+                    ).build()
+            );
+        }
 
         Assistant assistant = assistantRepository.findById(model.getModelId()).orElse(null);
 
@@ -228,7 +252,6 @@ public class AssistantService {
             json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(requestBody);
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("여기 문제임!!! -> ");
             throw new BusinessException(ErrorCode.INTERNAL_SERVER_ERROR);
         }
 
@@ -267,9 +290,6 @@ public class AssistantService {
 
             String response = jsonNode.get("output").get(1).get("content").get(0).get("text").asText();
 
-            System.out.println("Me: " + request.question());
-            System.out.println("AI: " + response);
-
             // History 저장
             historySave(assistant, part, request.question(), fileList, AIRole.USER, request.contentType());
             historySave(assistant, part, response, null, AIRole.ASSISTANT, AIContentType.AI_RESPONSE);
@@ -293,7 +313,6 @@ public class AssistantService {
                     .build();
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("여기 문제임!!!2 -> ");
             throw new BusinessException(ErrorCode.INTERNAL_SERVER_ERROR);
         }
     }
@@ -331,6 +350,17 @@ public class AssistantService {
         assistantRepository.deleteById(modelId);
     }
 
+    public String readMultipartText(MultipartFile file) {
+        try (BufferedReader reader = new BufferedReader(
+                new InputStreamReader(file.getInputStream(), StandardCharsets.UTF_8))) {
+
+            return reader.lines()
+                    .collect(Collectors.joining("\n"));
+
+        } catch (IOException e) {
+            throw new RuntimeException("파일 읽기 실패", e);
+        }
+    }
     private void historySave(Assistant assistant, Part part, String question, List<String> fileList, AIRole role, AIContentType contentType) {
         History history = History.builder()
                 .assistant(assistant)
