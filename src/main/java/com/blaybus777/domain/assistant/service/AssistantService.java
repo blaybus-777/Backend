@@ -201,32 +201,46 @@ public class AssistantService {
             }
 
             boolean isModel = (part == null);
-
-            // 특정 메타데이터 파일
-            requestJson.add(
-                ImageRequestInputList.builder()
-                    .role("user")
-                    .content(
-                        List.of(
-                            ImageInputBody.builder()
-                                .type("input_image")
-                                .image_url(isModel ? model.getImageUrl() : part.getImageUrl())
-                                .build()
-                        )
-                    ).build()
-            );
-            requestJson.add(
-                TextRequestInputList.builder()
-                    .role("user")
-                    .content(
-                        List.of(
-                            InputBody.builder()
-                                .type("input_text")
-                                .text(isModel ? model.getMetadata() : part.getMetadata())
-                                .build()
-                        )
-                    ).build()
-            );
+            if (part.getImageUrl() != null) {
+                // 특정 메타데이터 파일
+                requestJson.add(
+                    ImageRequestInputList.builder()
+                        .role("user")
+                        .content(
+                            List.of(
+                                ImageInputBody.builder()
+                                    .type("input_image")
+                                    .image_url(isModel ? model.getImageUrl() : part.getImageUrl())
+                                    .build()
+                            )
+                        ).build()
+                );
+                requestJson.add(
+                    TextRequestInputList.builder()
+                        .role("user")
+                        .content(
+                            List.of(
+                                InputBody.builder()
+                                    .type("input_text")
+                                    .text(isModel ? model.getMetadata() : part.getMetadata())
+                                    .build()
+                            )
+                        ).build()
+                );
+            } else {
+                requestJson.add(
+                    TextRequestInputList.builder()
+                        .role("user")
+                        .content(
+                            List.of(
+                                InputBody.builder()
+                                    .type("input_text")
+                                    .text(isModel ? model.getMetadata() : part.getMetadata())
+                                    .build()
+                            )
+                        ).build()
+                );
+            }
 
             // 질문
             requestJson.add(
