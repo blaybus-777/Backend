@@ -72,10 +72,12 @@ public class AssistantService {
         Model model = modelRepository.findById(request.modelId())
             .orElseThrow(() -> new BusinessException(ErrorCode.ENTITY_NOT_FOUND));
 
-        Part part = null;
+        Part part;
         if (!request.partId().equals(0L)) {
             part = partRepository.findById(request.partId())
                 .orElseThrow(() -> new BusinessException(ErrorCode.ENTITY_NOT_FOUND));
+        } else {
+            part = null;
         }
 
         // 퀵액션
@@ -199,6 +201,43 @@ public class AssistantService {
                     }
                 });
             }
+
+
+            if (!Objects.requireNonNull(part).getChildren().isEmpty()) {
+                part.getChildren().forEach(c -> {
+                    if (part.getImageUrl() != null) {
+                        // 특정 메타데이터 파일
+                        requestJson.add(
+                            ImageRequestInputList.builder()
+                                .role("user")
+                                .content(
+                                    List.of(
+                                        ImageInputBody.builder()
+                                            .type("input_image")
+                                            .image_url(part.getImageUrl())
+                                            .build()
+                                    )
+                                ).build()
+                        );
+                    }
+
+                    if (part.getMetadata() != null) {
+                        requestJson.add(
+                            TextRequestInputList.builder()
+                                .role("user")
+                                .content(
+                                    List.of(
+                                        InputBody.builder()
+                                            .type("input_text")
+                                            .text(part.getMetadata())
+                                            .build()
+                                    )
+                                ).build()
+                        );
+                    }
+                });
+            }
+
 
             boolean isModel = (part == null);
             if (part.getImageUrl() != null) {
