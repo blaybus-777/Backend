@@ -208,6 +208,7 @@ public class AssistantService {
                 part.getChildren().forEach(c -> {
                     if (part.getImageUrl() != null) {
                         // 특정 메타데이터 파일
+                        System.out.println(part.getImageUrl());
                         requestJson.add(
                             ImageRequestInputList.builder()
                                 .role("user")
@@ -223,6 +224,7 @@ public class AssistantService {
                     }
 
                     if (part.getMetadata() != null) {
+                        System.out.println(part.getMetadata());
                         requestJson.add(
                             TextRequestInputList.builder()
                                 .role("user")
