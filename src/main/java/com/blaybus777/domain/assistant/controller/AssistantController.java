@@ -34,7 +34,7 @@ public class AssistantController {
      * @return ListQuestionResponse 객체 반환
      */
     @PostMapping(value = "/question", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    @Operation(summary = "AI 질문", description = "AI 질문/답변 엔드포인트")
+    @Operation(summary = "AI 질문", description = "AI 질문/답변 엔드포인트 // code 필드는 QUICK일 때만 넣어주시면 됩니다. QUICK 타입 아니면 '' 빈칸으로 해주세요")
     public ApiResponse<ListQuestionResponse> question(
         @RequestPart(value = "file", required = false) List<MultipartFile> file,
         @RequestPart AIQuestionRequest request

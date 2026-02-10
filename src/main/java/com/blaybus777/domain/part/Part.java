@@ -50,6 +50,9 @@ public class Part {
     @Column(name = "hover_description")
     private String hoverDescription;
 
+    @Column(name = "quick_metadata", columnDefinition = "json")
+    private String quickMetadata;
+
     /**
      * 계층 구조: 상위 부품 (자기 참조)
      */
