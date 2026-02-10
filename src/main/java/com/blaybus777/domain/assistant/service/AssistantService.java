@@ -66,7 +66,7 @@ public class AssistantService {
      * AI 답변 조회
      * @return AI 답변 반환
      */
-    @Transactional(readOnly = true)
+    @Transactional
     public ListQuestionResponse question(List<MultipartFile> files, AIQuestionRequest request) {
         List<QuestionDto> responseList = new ArrayList<>();
 
