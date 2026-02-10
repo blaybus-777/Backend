@@ -562,21 +562,21 @@ VALUES (2, 'clamp_center', '센터 클램프', 'Clamp-Center', '단일 부품', 
 }', 'https://blaybus777-s3.s3.ap-northeast-2.amazonaws.com/leaf_spring/Clamp-Center.png');
 
 INSERT INTO part_functional_role (part_id, functional_role) VALUES
-(LAST_INSERT_ID(), '판스프링 전체를 중앙에서 고정'),
-(LAST_INSERT_ID(), '스프링 어긋남 방지'),
-(LAST_INSERT_ID(), '하중이 균등하게 전달되도록 보조');
+(75, '판스프링 전체를 중앙에서 고정'),
+(75, '스프링 어긋남 방지'),
+(75, '하중이 균등하게 전달되도록 보조');
 
 INSERT INTO part_engineering_theory (part_id, engineering_theory) VALUES
-(LAST_INSERT_ID(), '중앙 고정에 의한 하중 분산 원리'),
-(LAST_INSERT_ID(), '체결력을 통한 구조 일체화 개념');
+(75, '중앙 고정에 의한 하중 분산 원리'),
+(75, '체결력을 통한 구조 일체화 개념');
 
 INSERT INTO part_material (part_id, material) VALUES
-(LAST_INSERT_ID(), '탄소강'),
-(LAST_INSERT_ID(), '합금강');
+(75, '탄소강'),
+(75, '합금강');
 
 INSERT INTO part_learning_topic (part_id, learning_topic) VALUES
-(LAST_INSERT_ID(), '중앙 체결 구조'),
-(LAST_INSERT_ID(), '다중 판 구조 고정 방식');
+(75, '중앙 체결 구조'),
+(75, '다중 판 구조 고정 방식');
 
 -- 2. Clamp-Primary
 INSERT INTO part (model_id, code, name, english_name, category, description, hover_description, metadata, image_url)
@@ -613,21 +613,21 @@ VALUES (2, 'clamp_primary', '1차 클램프', 'Clamp-Primary', '단일 부품','
 }', 'https://blaybus777-s3.s3.ap-northeast-2.amazonaws.com/leaf_spring/Clamp-Primary.png');
 
 INSERT INTO part_functional_role (part_id, functional_role) VALUES
-    (LAST_INSERT_ID(), '스프링 판 위치 고정'),
-(LAST_INSERT_ID(), '주행 중 진동 억제'),
-(LAST_INSERT_ID(), '판스프링 정렬 유지');
+    (76, '스프링 판 위치 고정'),
+(76, '주행 중 진동 억제'),
+(76, '판스프링 정렬 유지');
 
 INSERT INTO part_engineering_theory (part_id, engineering_theory) VALUES
-    (LAST_INSERT_ID(), '국부 고정을 통한 형상 유지 원리'),
-(LAST_INSERT_ID(), '반복 진동 환경에서의 체결 안정성');
+    (76, '국부 고정을 통한 형상 유지 원리'),
+(76, '반복 진동 환경에서의 체결 안정성');
 
 INSERT INTO part_material (part_id, material) VALUES
-    (LAST_INSERT_ID(), '탄소강'),
-(LAST_INSERT_ID(), '도금 강재');
+    (76, '탄소강'),
+(76, '도금 강재');
 
 INSERT INTO part_learning_topic (part_id, learning_topic) VALUES
-    (LAST_INSERT_ID(), '국부 체결 구조'),
-(LAST_INSERT_ID(), '진동 환경 체결 설계');
+    (76, '국부 체결 구조'),
+(76, '진동 환경 체결 설계');
 
 -- 3. Clamp-Secondary
 INSERT INTO part (model_id, code, name, english_name, category, description, hover_description, metadata, image_url)
@@ -664,72 +664,21 @@ VALUES (2, 'clamp_secondary', '보조 클램프', 'Clamp-Secondary', '단일 부
 }', 'https://blaybus777-s3.s3.ap-northeast-2.amazonaws.com/leaf_spring/Clamp-Secondary.png');
 
 INSERT INTO part_functional_role (part_id, functional_role) VALUES
-    (LAST_INSERT_ID(), '보조 고정 지점 제공'),
-(LAST_INSERT_ID(), '스프링 판 벌어짐 방지'),
-(LAST_INSERT_ID(), '구조적 안정성 향상');
+    (77, '보조 고정 지점 제공'),
+(77, '스프링 판 벌어짐 방지'),
+(77, '구조적 안정성 향상');
 
 INSERT INTO part_engineering_theory (part_id, engineering_theory) VALUES
-    (LAST_INSERT_ID(), '하중 분산에 의한 피로 감소 원리'),
-(LAST_INSERT_ID(), '다점 고정 구조 개념');
+    (77, '하중 분산에 의한 피로 감소 원리'),
+(77, '다점 고정 구조 개념');
 
 INSERT INTO part_material (part_id, material) VALUES
-    (LAST_INSERT_ID(), '강철'),
-(LAST_INSERT_ID(), '합금강');
+    (77, '강철'),
+(77, '합금강');
 
 INSERT INTO part_learning_topic (part_id, learning_topic) VALUES
-    (LAST_INSERT_ID(), '다점 고정 설계'),
-(LAST_INSERT_ID(), '피로 수명 향상 구조');
-
--- 4. Leaf-Layer
-INSERT INTO part (model_id, code, name, english_name, category, description, hover_description, metadata, image_url)
-VALUES (2, 'leaf_layer', '리프 스프링 판', 'Leaf-Layer', '단일 부품', '판스프링을 구성하는 개별 스프링 판으로, 휘어지며 하중을 지지하는 핵심 부품', '하중을 지지하는 판', '{
-  "object_id": "leaf_layer",
-  "object_name": "리프 스프링 판",
-  "english_name": "Leaf-Layer",
-  "object_category": "단일 부품",
-
-  "description": "판스프링을 구성하는 개별 스프링 판으로, 휘어지며 하중을 지지하는 핵심 부품",
-
-  "functional_roles": [
-    "차량 하중 직접 지지",
-    "노면 충격 흡수",
-    "탄성 변형 후 복원"
-  ],
-
-  "key_engineering_theories": [
-    "굽힘 변형에 의한 탄성 에너지 저장",
-    "하중–변형–복원 관계"
-  ],
-
-  "common_materials": [
-    "스프링강",
-    "열처리 강재"
-  ],
-
-  "educational_usage": {
-    "learning_topics": [
-      "스프링 탄성 원리",
-      "굽힘 응력과 복원력"
-    ]
-  }
-}', 'https://blaybus777-s3.s3.ap-northeast-2.amazonaws.com/leaf_spring/Leaf-Layer.png');
-
-INSERT INTO part_functional_role (part_id, functional_role) VALUES
-(LAST_INSERT_ID(), '차량 하중 직접 지지'),
-(LAST_INSERT_ID(), '노면 충격 흡수'),
-(LAST_INSERT_ID(), '탄성 변형 후 복원');
-
-INSERT INTO part_engineering_theory (part_id, engineering_theory) VALUES
-(LAST_INSERT_ID(), '굽힘 변형에 의한 탄성 에너지 저장'),
-(LAST_INSERT_ID(), '하중–변형–복원 관계');
-
-INSERT INTO part_material (part_id, material) VALUES
-(LAST_INSERT_ID(), '스프링강'),
-(LAST_INSERT_ID(), '열처리 강재');
-
-INSERT INTO part_learning_topic (part_id, learning_topic) VALUES
-(LAST_INSERT_ID(), '스프링 탄성 원리'),
-(LAST_INSERT_ID(), '굽힘 응력과 복원력');
+    (77, '다점 고정 설계'),
+(77, '피로 수명 향상 구조');
 
 -- 5. Support
 INSERT INTO part (model_id, code, name, english_name, category, description, hover_description, metadata, image_url)
@@ -766,21 +715,21 @@ VALUES (2, 'support', '지지 브래킷', 'Support', '단일 부품', '판스프
 }', 'https://blaybus777-s3.s3.ap-northeast-2.amazonaws.com/leaf_spring/Support.png');
 
 INSERT INTO part_functional_role (part_id, functional_role) VALUES
-(LAST_INSERT_ID(), '스프링과 차체 연결'),
-(LAST_INSERT_ID(), '하중 전달'),
-(LAST_INSERT_ID(), '판스프링 위치 유지');
+(79, '스프링과 차체 연결'),
+(79, '하중 전달'),
+(79, '판스프링 위치 유지');
 
 INSERT INTO part_engineering_theory (part_id, engineering_theory) VALUES
-(LAST_INSERT_ID(), '하중 전달 경로 설계 개념'),
-(LAST_INSERT_ID(), '지지 구조물의 강성 원리');
+(79, '하중 전달 경로 설계 개념'),
+(79, '지지 구조물의 강성 원리');
 
 INSERT INTO part_material (part_id, material) VALUES
-(LAST_INSERT_ID(), '강철'),
-(LAST_INSERT_ID(), '알루미늄');
+(79, '강철'),
+(79, '알루미늄');
 
 INSERT INTO part_learning_topic (part_id, learning_topic) VALUES
-(LAST_INSERT_ID(), '지지 구조 설계'),
-(LAST_INSERT_ID(), '하중 전달 메커니즘');
+(79, '지지 구조 설계'),
+(79, '하중 전달 메커니즘');
 
 -- 6. Support-Chassis Rigid
 INSERT INTO part (model_id, code, name, english_name, category, description, hover_description, metadata, image_url)
@@ -817,21 +766,21 @@ VALUES (2, 'support_chassis_rigid', '차체 고정 지지대', 'Support-Chassis 
 }', 'https://blaybus777-s3.s3.ap-northeast-2.amazonaws.com/leaf_spring/Support-Chassis+Rigid.png');
 
 INSERT INTO part_functional_role (part_id, functional_role) VALUES
-(LAST_INSERT_ID(), '판스프링을 차체에 단단히 고정'),
-(LAST_INSERT_ID(), '불필요한 움직임 제한'),
-(LAST_INSERT_ID(), '서스펜션 정렬 유지');
+(80, '판스프링을 차체에 단단히 고정'),
+(80, '불필요한 움직임 제한'),
+(80, '서스펜션 정렬 유지');
 
 INSERT INTO part_engineering_theory (part_id, engineering_theory) VALUES
-(LAST_INSERT_ID(), '강체 연결에 의한 변형 최소화'),
-(LAST_INSERT_ID(), '구조물 고정 원리');
+(80, '강체 연결에 의한 변형 최소화'),
+(80, '구조물 고정 원리');
 
 INSERT INTO part_material (part_id, material) VALUES
-(LAST_INSERT_ID(), '강철'),
-(LAST_INSERT_ID(), '주철');
+(80, '강철'),
+(80, '주철');
 
 INSERT INTO part_learning_topic (part_id, learning_topic) VALUES
-(LAST_INSERT_ID(), '강체 연결 구조'),
-(LAST_INSERT_ID(), '서스펜션 고정 방식');
+(80, '강체 연결 구조'),
+(80, '서스펜션 고정 방식');
 
 -- 7. Support-Chassis
 INSERT INTO part (model_id, code, name, english_name, category, description, hover_description, metadata, image_url)
@@ -868,21 +817,21 @@ VALUES (2, 'support_chassis', '차체 지지대', 'Support-Chassis', '단일 부
 }', 'https://blaybus777-s3.s3.ap-northeast-2.amazonaws.com/leaf_spring/Support-Chassis.png');
 
 INSERT INTO part_functional_role (part_id, functional_role) VALUES
-    (LAST_INSERT_ID(), '판스프링과 차체 연결'),
-(LAST_INSERT_ID(), '주행 중 움직임 허용'),
-(LAST_INSERT_ID(), '구조적 안정성 유지');
+    (81, '판스프링과 차체 연결'),
+(81, '주행 중 움직임 허용'),
+(81, '구조적 안정성 유지');
 
 INSERT INTO part_engineering_theory (part_id, engineering_theory) VALUES
-    (LAST_INSERT_ID(), '제한된 자유도를 가진 연결 구조 개념'),
-(LAST_INSERT_ID(), '하중과 움직임의 균형 설계');
+    (81, '제한된 자유도를 가진 연결 구조 개념'),
+(81, '하중과 움직임의 균형 설계');
 
 INSERT INTO part_material (part_id, material) VALUES
-    (LAST_INSERT_ID(), '강철'),
-(LAST_INSERT_ID(), '합금강');
+    (81, '강철'),
+(81, '합금강');
 
 INSERT INTO part_learning_topic (part_id, learning_topic) VALUES
-    (LAST_INSERT_ID(), '유연 연결 구조'),
-(LAST_INSERT_ID(), '차체–서스펜션 인터페이스');
+    (81, '유연 연결 구조'),
+(81, '차체–서스펜션 인터페이스');
 
 -- 8. Support-Rubber 60mm
 INSERT INTO part (model_id, code, name, english_name, category, description, hover_description, metadata, image_url)
@@ -919,21 +868,21 @@ VALUES (2, 'support_rubber_60mm', '고무 지지대 60mm', 'Support-Rubber 60mm'
 }', 'https://blaybus777-s3.s3.ap-northeast-2.amazonaws.com/leaf_spring/Support-Rubber+60mm.png');
 
 INSERT INTO part_functional_role (part_id, functional_role) VALUES
-(LAST_INSERT_ID(), '진동 및 충격 흡수'),
-(LAST_INSERT_ID(), '금속 간 직접 접촉 방지'),
-(LAST_INSERT_ID(), '승차감 향상');
+(82, '진동 및 충격 흡수'),
+(82, '금속 간 직접 접촉 방지'),
+(82, '승차감 향상');
 
 INSERT INTO part_engineering_theory (part_id, engineering_theory) VALUES
-(LAST_INSERT_ID(), '탄성체의 압축 변형과 복원'),
-(LAST_INSERT_ID(), '진동 감쇠 원리');
+(82, '탄성체의 압축 변형과 복원'),
+(82, '진동 감쇠 원리');
 
 INSERT INTO part_material (part_id, material) VALUES
-(LAST_INSERT_ID(), '천연고무'),
-(LAST_INSERT_ID(), '합성고무');
+(82, '천연고무'),
+(82, '합성고무');
 
 INSERT INTO part_learning_topic (part_id, learning_topic) VALUES
-(LAST_INSERT_ID(), '고무 탄성 특성'),
-(LAST_INSERT_ID(), '완충 요소 설계');
+(82, '고무 탄성 특성'),
+(82, '완충 요소 설계');
 
 -- 9. Support-Rubber
 INSERT INTO part (model_id, code, name, english_name, category, description, hover_description, metadata, image_url)
@@ -970,21 +919,21 @@ VALUES (2, 'support_rubber', '고무 완충 부품', 'Support-Rubber', '단일 �
 }', 'https://blaybus777-s3.s3.ap-northeast-2.amazonaws.com/leaf_spring/Support-Rubber.png');
 
 INSERT INTO part_functional_role (part_id, functional_role) VALUES
-(LAST_INSERT_ID(), '주행 충격 완화'),
-(LAST_INSERT_ID(), '소음 및 진동 전달 감소'),
-(LAST_INSERT_ID(), '시스템 수명 연장');
+(83, '주행 충격 완화'),
+(83, '소음 및 진동 전달 감소'),
+(83, '시스템 수명 연장');
 
 INSERT INTO part_engineering_theory (part_id, engineering_theory) VALUES
-(LAST_INSERT_ID(), '고무 재질의 감쇠 특성'),
-(LAST_INSERT_ID(), '에너지 흡수에 의한 진동 감소');
+(83, '고무 재질의 감쇠 특성'),
+(83, '에너지 흡수에 의한 진동 감소');
 
 INSERT INTO part_material (part_id, material) VALUES
-(LAST_INSERT_ID(), '천연고무'),
-(LAST_INSERT_ID(), '합성고무');
+(83, '천연고무'),
+(83, '합성고무');
 
 INSERT INTO part_learning_topic (part_id, learning_topic) VALUES
-(LAST_INSERT_ID(), '진동 감쇠 재료'),
-(LAST_INSERT_ID(), '서스펜션 NVH 개념');
+(83, '진동 감쇠 재료'),
+(83, '서스펜션 NVH 개념');
 
 -- 1. Fuhrung
 INSERT INTO part (model_id, code, name, english_name, category, description, hover_description, metadata, image_url)
@@ -1022,506 +971,196 @@ VALUES (3, 'fuhrung', '가이드 본체', 'Fuhrung', '단일 부품', '바이스
 }', 'https://blaybus777-s3.s3.ap-northeast-2.amazonaws.com/machine_vice/Fuhrung.png');
 
 INSERT INTO part_functional_role (part_id, functional_role) VALUES
-(LAST_INSERT_ID(), '이동 바이스 조의 직선 이동을 유도'),
-(LAST_INSERT_ID(), '바이스 전체 강성 확보'),
-(LAST_INSERT_ID(), '가공 중 발생하는 진동 억제');
+(96, '이동 바이스 조의 직선 이동을 유도'),
+(96, '바이스 전체 강성 확보'),
+(96, '가공 중 발생하는 진동 억제');
 
 INSERT INTO part_engineering_theory (part_id, engineering_theory) VALUES
-(LAST_INSERT_ID(), '직선 운동 구속(Linear Constraint) 원리'),
-(LAST_INSERT_ID(), '가이드면 평행도 유지 개념');
+(96, '직선 운동 구속(Linear Constraint) 원리'),
+(96, '가이드면 평행도 유지 개념');
 
 INSERT INTO part_material (part_id, material) VALUES
-(LAST_INSERT_ID(), '주철(Cast Iron)'),
-(LAST_INSERT_ID(), '강철(Steel)');
+(96, '주철(Cast Iron)'),
+(96, '강철(Steel)');
 
 INSERT INTO part_learning_topic (part_id, learning_topic) VALUES
-(LAST_INSERT_ID(), '직선 가이드 구조'),
-(LAST_INSERT_ID(), '정렬 정확도와 강성의 관계'),
-(LAST_INSERT_ID(), '진동 감쇠용 재료 선택');
+(96, '직선 가이드 구조'),
+(96, '정렬 정확도와 강성의 관계'),
+(96, '진동 감쇠용 재료 선택');
 
--- 2. Lose Backe Body
-INSERT INTO part (model_id, code, name, english_name, category, description, hover_description, metadata, image_url)
-VALUES (3, 'lose_backe_body', '이동 조 몸체', 'Lose Backe Body', '단일 부품','이동 바이스 조(가동 죠)를 지지하는 본체 구조물로, 스핀들 힘을 받아 실제로 이동하는 핵심 구동 부품', '이동 조 지지 구조', '{
-  "object_id": "lose_backe_body",
-  "object_name": "이동 조 몸체",
-  "english_name": "Lose Backe Body",
-  "object_category": "단일 부품",
-
-  "description": "이동 바이스 조(가동 죠)를 지지하는 본체 구조물로, 스핀들 힘을 받아 실제로 이동하는 핵심 구동 부품",
-
-  "functional_roles": [
-    "이동 바이스 조를 구조적으로 지지",
-    "스핀들의 힘을 전달받아 이동",
-    "클램핑 압력을 공작물에 전달"
-  ],
-
-  "key_engineering_theories": [
-    "스핀들 회전에 의한 병진 운동 변환",
-    "가이드 접촉면 정렬 유지 원리"
-  ],
-
-  "common_materials": [
-    "주철",
-    "강철"
-  ],
-
-  "educational_usage": {
-    "learning_topics": [
-      "나사 구동에 의한 직선 이동",
-      "가동부 정렬과 마모",
-      "클램핑 압력 전달 경로"
-    ]
-  }
-}', 'https://blaybus777-s3.s3.ap-northeast-2.amazonaws.com/machine_vice/Lose+Backe+Body.png');
 
 INSERT INTO part_functional_role (part_id, functional_role) VALUES
-(LAST_INSERT_ID(), '이동 바이스 조를 구조적으로 지지'),
-(LAST_INSERT_ID(), '스핀들의 힘을 전달받아 이동'),
-(LAST_INSERT_ID(), '클램핑 압력을 공작물에 전달');
+(97, '이동 바이스 조를 구조적으로 지지'),
+(97, '스핀들의 힘을 전달받아 이동'),
+(97, '클램핑 압력을 공작물에 전달');
 
 INSERT INTO part_engineering_theory (part_id, engineering_theory) VALUES
-(LAST_INSERT_ID(), '스핀들 회전에 의한 병진 운동 변환'),
-(LAST_INSERT_ID(), '가이드 접촉면 정렬 유지 원리');
+(97, '스핀들 회전에 의한 병진 운동 변환'),
+(97, '가이드 접촉면 정렬 유지 원리');
 
 INSERT INTO part_material (part_id, material) VALUES
-(LAST_INSERT_ID(), '주철'),
-(LAST_INSERT_ID(), '강철');
+(97, '주철'),
+(97, '강철');
 
 INSERT INTO part_learning_topic (part_id, learning_topic) VALUES
-(LAST_INSERT_ID(), '나사 구동에 의한 직선 이동'),
-(LAST_INSERT_ID(), '가동부 정렬과 마모'),
-(LAST_INSERT_ID(), '클램핑 압력 전달 경로');
+(97, '나사 구동에 의한 직선 이동'),
+(97, '가동부 정렬과 마모'),
+(97, '클램핑 압력 전달 경로');
 
--- 3. Feste Backe
-INSERT INTO part (model_id, code, name, english_name, category, description, hover_description, metadata, image_url)
-VALUES (3, 'feste_backe', '고정 조', 'Feste Backe', '단일 부품', '바이스에 고정된 고정 죠(Jaw) 부품으로 공작물 위치의 기준면 역할을 수행', '고정 기준 죠', '{
-  "object_id": "feste_backe",
-  "object_name": "고정 조",
-  "english_name": "Feste Backe",
-  "object_category": "단일 부품",
-
-  "description": "바이스에 고정된 고정 죠(Jaw) 부품으로 공작물 위치의 기준면 역할을 수행",
-
-  "functional_roles": [
-    "공작물을 기준 위치에서 지지",
-    "이동 조와 함께 클램핑 압력 형성",
-    "가공 정밀도 확보"
-  ],
-
-  "key_engineering_theories": [
-    "고정 기준면(Fixed Reference Surface) 개념",
-    "반력 지지 구조 원리"
-  ],
-
-  "common_materials": [
-    "공구강",
-    "열처리 강재"
-  ],
-
-  "educational_usage": {
-    "learning_topics": [
-      "기준면 설정과 위치 결정",
-      "반력 지지 구조",
-      "마모/경도와 정밀도 유지"
-    ]
-  }
-}', 'https://blaybus777-s3.s3.ap-northeast-2.amazonaws.com/machine_vice/Feste+Backe.png');
 
 INSERT INTO part_functional_role (part_id, functional_role) VALUES
-(LAST_INSERT_ID(), '공작물을 기준 위치에서 지지'),
-(LAST_INSERT_ID(), '이동 조와 함께 클램핑 압력 형성'),
-(LAST_INSERT_ID(), '가공 정밀도 확보');
+(98, '공작물을 기준 위치에서 지지'),
+(98, '이동 조와 함께 클램핑 압력 형성'),
+(98, '가공 정밀도 확보');
 
 INSERT INTO part_engineering_theory (part_id, engineering_theory) VALUES
-(LAST_INSERT_ID(), '고정 기준면(Fixed Reference Surface) 개념'),
-(LAST_INSERT_ID(), '반력 지지 구조 원리');
+(98, '고정 기준면(Fixed Reference Surface) 개념'),
+(98, '반력 지지 구조 원리');
 
 INSERT INTO part_material (part_id, material) VALUES
-(LAST_INSERT_ID(), '공구강'),
-(LAST_INSERT_ID(), '열처리 강재');
+(98, '공구강'),
+(98, '열처리 강재');
 
 INSERT INTO part_learning_topic (part_id, learning_topic) VALUES
-(LAST_INSERT_ID(), '기준면 설정과 위치 결정'),
-(LAST_INSERT_ID(), '반력 지지 구조'),
-(LAST_INSERT_ID(), '마모/경도와 정밀도 유지');
+(98, '기준면 설정과 위치 결정'),
+(98, '반력 지지 구조'),
+(98, '마모/경도와 정밀도 유지');
 
--- 4. Lose Backe
-INSERT INTO part (model_id, code, name, english_name, category, description, hover_description, metadata, image_url)
-VALUES (3, 'lose_backe', '이동 조', 'Lose Backe', '단일 부품', '스핀들에 의해 이동하는 바이스 조로, 공작물을 눌러 고정하는 가동 클램핑 부품', '이동하는 클램핑 죠', '{
-  "object_id": "lose_backe",
-  "object_name": "이동 조",
-  "english_name": "Lose Backe",
-  "object_category": "단일 부품",
-
-  "description": "스핀들에 의해 이동하는 바이스 조로, 공작물을 눌러 고정하는 가동 클램핑 부품",
-
-  "functional_roles": [
-    "공작물을 고정 방향으로 이동시킴",
-    "클램핑 압력을 직접 가함",
-    "다양한 공작물 크기에 대응"
-  ],
-
-  "key_engineering_theories": [
-    "이동 클램핑 구조 원리",
-    "압축력 전달 개념"
-  ],
-
-  "common_materials": [
-    "공구강",
-    "합금강"
-  ],
-
-  "educational_usage": {
-    "learning_topics": [
-      "가동 죠의 힘 전달",
-      "압축 하중과 접촉 설계",
-      "공작물 크기 대응 메커니즘"
-    ]
-  }
-}', 'https://blaybus777-s3.s3.ap-northeast-2.amazonaws.com/machine_vice/Lose+Backe.png');
 
 INSERT INTO part_functional_role (part_id, functional_role) VALUES
-(LAST_INSERT_ID(), '공작물을 고정 방향으로 이동시킴'),
-(LAST_INSERT_ID(), '클램핑 압력을 직접 가함'),
-(LAST_INSERT_ID(), '다양한 공작물 크기에 대응');
+(99, '공작물을 고정 방향으로 이동시킴'),
+(99, '클램핑 압력을 직접 가함'),
+(99, '다양한 공작물 크기에 대응');
 
 INSERT INTO part_engineering_theory (part_id, engineering_theory) VALUES
-(LAST_INSERT_ID(), '이동 클램핑 구조 원리'),
-(LAST_INSERT_ID(), '압축력 전달 개념');
+(99, '이동 클램핑 구조 원리'),
+(99, '압축력 전달 개념');
 
 INSERT INTO part_material (part_id, material) VALUES
-(LAST_INSERT_ID(), '공구강'),
-(LAST_INSERT_ID(), '합금강');
+(99, '공구강'),
+(99, '합금강');
 
 INSERT INTO part_learning_topic (part_id, learning_topic) VALUES
-(LAST_INSERT_ID(), '가동 죠의 힘 전달'),
-(LAST_INSERT_ID(), '압축 하중과 접촉 설계'),
-(LAST_INSERT_ID(), '공작물 크기 대응 메커니즘');
+(99, '가동 죠의 힘 전달'),
+(99, '압축 하중과 접촉 설계'),
+(99, '공작물 크기 대응 메커니즘');
 
--- 5. Spindelsockel
-INSERT INTO part (model_id, code, name, english_name, category, description, hover_description, metadata, image_url)
-VALUES (3, 'spindelsockel', '스핀들 소켓', 'Spindelsockel', '단일 부품', '트라페조이드 스핀들을 지지하는 소켓 구조로, 회전 운동을 직선 운동으로 변환하는 핵심 부품', '스핀들 지지 소켓', '{
-  "object_id": "spindelsockel",
-  "object_name": "스핀들 소켓",
-  "english_name": "Spindelsockel",
-  "object_category": "단일 부품",
-
-  "description": "트라페조이드 스핀들을 지지하는 소켓 구조로, 회전 운동을 직선 운동으로 변환하는 핵심 부품",
-
-  "functional_roles": [
-    "스핀들을 정확한 위치에서 지지",
-    "회전력을 이동력으로 변환",
-    "바이스 작동 신뢰성 유지"
-  ],
-
-  "key_engineering_theories": [
-    "나사-너트 운동 변환 원리",
-    "축방향 하중 분산 개념"
-  ],
-
-  "common_materials": [
-    "주철",
-    "청동 인서트"
-  ],
-
-  "educational_usage": {
-    "learning_topics": [
-      "스핀들 지지 구조",
-      "축방향 하중 분산",
-      "마찰·마모 감소 인서트 설계"
-    ]
-  }
-}', 'https://blaybus777-s3.s3.ap-northeast-2.amazonaws.com/machine_vice/Spindelsockel.png');
 
 INSERT INTO part_functional_role (part_id, functional_role) VALUES
-(LAST_INSERT_ID(), '스핀들을 정확한 위치에서 지지'),
-(LAST_INSERT_ID(), '회전력을 이동력으로 변환'),
-(LAST_INSERT_ID(), '바이스 작동 신뢰성 유지');
+(100, '스핀들을 정확한 위치에서 지지'),
+(100, '회전력을 이동력으로 변환'),
+(100, '바이스 작동 신뢰성 유지');
 
 INSERT INTO part_engineering_theory (part_id, engineering_theory) VALUES
-(LAST_INSERT_ID(), '나사-너트 운동 변환 원리'),
-(LAST_INSERT_ID(), '축방향 하중 분산 개념');
+(100, '나사-너트 운동 변환 원리'),
+(100, '축방향 하중 분산 개념');
 
 INSERT INTO part_material (part_id, material) VALUES
-(LAST_INSERT_ID(), '주철'),
-(LAST_INSERT_ID(), '청동 인서트');
+(100, '주철'),
+(100, '청동 인서트');
 
 INSERT INTO part_learning_topic (part_id, learning_topic) VALUES
-(LAST_INSERT_ID(), '스핀들 지지 구조'),
-(LAST_INSERT_ID(), '축방향 하중 분산'),
-(LAST_INSERT_ID(), '마찰·마모 감소 인서트 설계');
+(100, '스핀들 지지 구조'),
+(100, '축방향 하중 분산'),
+(100, '마찰·마모 감소 인서트 설계');
 
--- 6. Spannbacke
-INSERT INTO part (model_id, code, name, english_name, category, description, hover_description, metadata, image_url)
-VALUES (3, 'spannbacke', '클램핑 죠(교체형)', 'Spannbacke', '단일 부품', '공작물과 직접 접촉하는 교체형 클램핑 죠로, 마모를 고려한 소모 부품', '교체형 클램핑 죠', '{
-  "object_id": "spannbacke",
-  "object_name": "클램핑 죠(교체형)",
-  "english_name": "Spannbacke",
-  "object_category": "단일 부품",
-
-  "description": "공작물과 직접 접촉하는 교체형 클램핑 죠로, 마모를 고려한 소모 부품",
-
-  "functional_roles": [
-    "공작물을 안정적으로 고정",
-    "공작물 표면 손상 방지",
-    "마모 시 손쉽게 교체"
-  ],
-
-  "key_engineering_theories": [
-    "접촉면 압력 분산 원리",
-    "마찰력 증대 개념"
-  ],
-
-  "common_materials": [
-    "열처리 공구강",
-    "표면 경화 강재"
-  ],
-
-  "educational_usage": {
-    "learning_topics": [
-      "소모품 설계(교체성)",
-      "접촉 압력 분산",
-      "표면 경화와 마찰"
-    ]
-  }
-}', 'https://blaybus777-s3.s3.ap-northeast-2.amazonaws.com/machine_vice/Spannbacke.png');
 
 INSERT INTO part_functional_role (part_id, functional_role) VALUES
-(LAST_INSERT_ID(), '공작물을 안정적으로 고정'),
-(LAST_INSERT_ID(), '공작물 표면 손상 방지'),
-(LAST_INSERT_ID(), '마모 시 손쉽게 교체');
+(101, '공작물을 안정적으로 고정'),
+(101, '공작물 표면 손상 방지'),
+(101, '마모 시 손쉽게 교체');
 
 INSERT INTO part_engineering_theory (part_id, engineering_theory) VALUES
-(LAST_INSERT_ID(), '접촉면 압력 분산 원리'),
-(LAST_INSERT_ID(), '마찰력 증대 개념');
+(101, '접촉면 압력 분산 원리'),
+(101, '마찰력 증대 개념');
 
 INSERT INTO part_material (part_id, material) VALUES
-(LAST_INSERT_ID(), '열처리 공구강'),
-(LAST_INSERT_ID(), '표면 경화 강재');
+(101, '열처리 공구강'),
+(101, '표면 경화 강재');
 
 INSERT INTO part_learning_topic (part_id, learning_topic) VALUES
-(LAST_INSERT_ID(), '소모품 설계(교체성)'),
-(LAST_INSERT_ID(), '접촉 압력 분산'),
-(LAST_INSERT_ID(), '표면 경화와 마찰');
+(101, '소모품 설계(교체성)'),
+(101, '접촉 압력 분산'),
+(101, '표면 경화와 마찰');
 
--- 7. Fuhrungsschiene
-INSERT INTO part (model_id, code, name, english_name, category, description, hover_description, metadata, image_url)
-VALUES (3, 'fuhrungsschiene', '가이드 레일', 'Fuhrungsschiene', '단일 부품', '이동 바이스 조의 직선 이동을 보조하는 정밀 가이드 레일로, 마찰과 뒤틀림을 억제한다.', '정밀 가이드 레일', '{
-  "object_id": "fuhrungsschiene",
-  "object_name": "가이드 레일",
-  "english_name": "Fuhrungsschiene",
-  "object_category": "단일 부품",
-
-  "description": "이동 바이스 조의 직선 이동을 보조하는 정밀 가이드 레일로, 마찰과 뒤틀림을 억제한다.",
-
-  "functional_roles": [
-    "이동 정확도 향상",
-    "쏠림 및 편마모 방지",
-    "정렬 상태 장기 유지"
-  ],
-
-  "key_engineering_theories": [
-    "슬라이딩 가이드 구조",
-    "마찰 제어 원리"
-  ],
-
-  "common_materials": [
-    "강철",
-    "표면 경화 처리 강재"
-  ],
-
-  "educational_usage": {
-    "learning_topics": [
-      "슬라이드 가이드 설계",
-      "마찰과 정밀도",
-      "편마모 방지 구조"
-    ]
-  }
-}
-', 'https://blaybus777-s3.s3.ap-northeast-2.amazonaws.com/machine_vice/Fuhrungsschiene.png');
 
 INSERT INTO part_functional_role (part_id, functional_role) VALUES
-(LAST_INSERT_ID(), '이동 정확도 향상'),
-(LAST_INSERT_ID(), '쏠림 및 편마모 방지'),
-(LAST_INSERT_ID(), '정렬 상태 장기 유지');
+(102, '이동 정확도 향상'),
+(102, '쏠림 및 편마모 방지'),
+(102, '정렬 상태 장기 유지');
 
 INSERT INTO part_engineering_theory (part_id, engineering_theory) VALUES
-(LAST_INSERT_ID(), '슬라이딩 가이드 구조'),
-(LAST_INSERT_ID(), '마찰 제어 원리');
+(102, '슬라이딩 가이드 구조'),
+(102, '마찰 제어 원리');
 
 INSERT INTO part_material (part_id, material) VALUES
-(LAST_INSERT_ID(), '강철'),
-(LAST_INSERT_ID(), '표면 경화 처리 강재');
+(102, '강철'),
+(102, '표면 경화 처리 강재');
 
 INSERT INTO part_learning_topic (part_id, learning_topic) VALUES
-(LAST_INSERT_ID(), '슬라이드 가이드 설계'),
-(LAST_INSERT_ID(), '마찰과 정밀도'),
-(LAST_INSERT_ID(), '편마모 방지 구조');
+(102, '슬라이드 가이드 설계'),
+(102, '마찰과 정밀도'),
+(102, '편마모 방지 구조');
 
--- 8. Trapezspindel
-INSERT INTO part (model_id, code, name, english_name, category, description, hover_description, metadata, image_url)
-VALUES (3, 'trapezspindel', '트라페조이드 스핀들', 'Trapezspindel', '단일 부품', '바이스를 작동시키는 트라페조이드 나사로, 회전 입력을 직선 이동으로 변환한다.', '회전을 직선으로 변환', '{
-  "object_id": "trapezspindel",
-  "object_name": "트라페조이드 스핀들",
-  "english_name": "Trapezspindel",
-  "object_category": "단일 부품",
-
-  "description": "바이스를 작동시키는 트라페조이드 나사로, 회전 입력을 직선 이동으로 변환한다.",
-
-  "functional_roles": [
-    "바이스 개폐 제어",
-    "클램핑 힘 생성",
-    "작업자 입력을 기계적 힘으로 변환"
-  ],
-
-  "key_engineering_theories": [
-    "트라페조이드 나사 형상 이론",
-    "마찰 기반 자잠김(Self-locking) 원리"
-  ],
-
-  "common_materials": [
-    "합금강",
-    "표면 경화 강재"
-  ],
-
-  "educational_usage": {
-    "learning_topics": [
-      "나사 형상과 효율",
-      "자잠김 조건과 안전",
-      "클램핑 힘 생성 메커니즘"
-    ]
-  }
-}', 'https://blaybus777-s3.s3.ap-northeast-2.amazonaws.com/machine_vice/Trapezspindel.png');
 
 INSERT INTO part_functional_role (part_id, functional_role) VALUES
-(LAST_INSERT_ID(), '바이스 개폐 제어'),
-(LAST_INSERT_ID(), '클램핑 힘 생성'),
-(LAST_INSERT_ID(), '작업자 입력을 기계적 힘으로 변환');
+(103, '바이스 개폐 제어'),
+(103, '클램핑 힘 생성'),
+(103, '작업자 입력을 기계적 힘으로 변환');
 
 INSERT INTO part_engineering_theory (part_id, engineering_theory) VALUES
-(LAST_INSERT_ID(), '트라페조이드 나사 형상 이론'),
-(LAST_INSERT_ID(), '마찰 기반 자잠김(Self-locking) 원리');
+(103, '트라페조이드 나사 형상 이론'),
+(103, '마찰 기반 자잠김(Self-locking) 원리');
 
 INSERT INTO part_material (part_id, material) VALUES
-(LAST_INSERT_ID(), '합금강'),
-(LAST_INSERT_ID(), '표면 경화 강재');
+(103, '합금강'),
+(103, '표면 경화 강재');
 
 INSERT INTO part_learning_topic (part_id, learning_topic) VALUES
-(LAST_INSERT_ID(), '나사 형상과 효율'),
-(LAST_INSERT_ID(), '자잠김 조건과 안전'),
-(LAST_INSERT_ID(), '클램핑 힘 생성 메커니즘');
+(103, '나사 형상과 효율'),
+(103, '자잠김 조건과 안전'),
+(103, '클램핑 힘 생성 메커니즘');
 
--- 9. Grundplatte
-INSERT INTO part (model_id, code, name, english_name, category, description, hover_description, metadata, image_url)
-VALUES (3, 'grundplatte', '베이스 플레이트', 'Grundplatte', '단일 부품', '바이스 전체를 지지하는 바닥 베이스 부품으로 기계 테이블과 직접 결합되는 구조물', '바이스 하부 베이스', '{
-  "object_id": "grundplatte",
-  "object_name": "베이스 플레이트",
-  "english_name": "Grundplatte",
-  "object_category": "단일 부품",
-
-  "description": "바이스 전체를 지지하는 바닥 베이스 부품으로 기계 테이블과 직접 결합되는 구조물",
-
-  "functional_roles": [
-    "바이스를 기계 테이블에 고정",
-    "전체 구조 하중 지지",
-    "가공 중 안정성 유지"
-  ],
-
-  "key_engineering_theories": [
-    "하중 분산 구조 설계",
-    "기초 지지 원리"
-  ],
-
-  "common_materials": [
-    "주철",
-    "강철"
-  ],
-
-  "educational_usage": {
-    "learning_topics": [
-      "베이스 강성과 안정성",
-      "하중 분산 설계",
-      "기계 테이블 체결 개념"
-    ]
-  }
-}', 'https://blaybus777-s3.s3.ap-northeast-2.amazonaws.com/machine_vice/Grundplatte.png');
 
 INSERT INTO part_functional_role (part_id, functional_role) VALUES
-(LAST_INSERT_ID(), '바이스를 기계 테이블에 고정'),
-(LAST_INSERT_ID(), '전체 구조 하중 지지'),
-(LAST_INSERT_ID(), '가공 중 안정성 유지');
+(104, '바이스를 기계 테이블에 고정'),
+(104, '전체 구조 하중 지지'),
+(104, '가공 중 안정성 유지');
 
 INSERT INTO part_engineering_theory (part_id, engineering_theory) VALUES
-(LAST_INSERT_ID(), '하중 분산 구조 설계'),
-(LAST_INSERT_ID(), '기초 지지 원리');
+(104, '하중 분산 구조 설계'),
+(104, '기초 지지 원리');
 
 INSERT INTO part_material (part_id, material) VALUES
-(LAST_INSERT_ID(), '주철'),
-(LAST_INSERT_ID(), '강철');
+(104, '주철'),
+(104, '강철');
 
 INSERT INTO part_learning_topic (part_id, learning_topic) VALUES
-(LAST_INSERT_ID(), '베이스 강성과 안정성'),
-(LAST_INSERT_ID(), '하중 분산 설계'),
-(LAST_INSERT_ID(), '기계 테이블 체결 개념');
+(104, '베이스 강성과 안정성'),
+(104, '하중 분산 설계'),
+(104, '기계 테이블 체결 개념');
 
--- 10. Druckhulse
-INSERT INTO part (model_id, code, name, english_name, category, description, hover_description, metadata, image_url)
-VALUES (3, 'druckhulse', '압력 슬리브', 'Druckhülse', '단일 부품', '바이스 내부에서 스핀들 구동부에서 발생한 힘을 다른 부품으로 균일하게 전달하는 슬리브(압력 부시) 부품', '압력을 균일 전달', '{
-  "object_id": "druckhulse",
-  "object_name": "압력 슬리브",
-  "english_name": "Druckhülse",
-  "object_category": "단일 부품",
-
-  "description": "바이스 내부에서 스핀들 구동부에서 발생한 힘을 다른 부품으로 균일하게 전달하는 슬리브(압력 부시) 부품",
-
-  "functional_roles": [
-    "스핀들에서 발생한 압력 전달",
-    "회전 부품과 고정부 사이에서 힘을 매개",
-    "국부 마모 방지 및 수명 연장",
-    "클램핑 동작의 부드러움 유지"
-  ],
-
-  "key_engineering_theories": [
-    "축방향 압축 하중 전달(Axial Load Transfer) 원리",
-    "면 접촉을 통한 국부 응력 분산 개념",
-    "슬리브 구조에 의한 정렬 유지 이론"
-  ],
-
-  "common_materials": [
-    "강철(Steel)",
-    "경화강 또는 표면 열처리 강재",
-    "청동(Bronze)"
-  ],
-
-  "educational_usage": {
-    "learning_topics": [
-      "압력 전달 부시 역할",
-      "축방향 하중 전달",
-      "마모 저감 재료(청동) 적용"
-    ]
-  }
-}', 'https://blaybus777-s3.s3.ap-northeast-2.amazonaws.com/machine_vice/Druckhulse.png');
 
 INSERT INTO part_functional_role (part_id, functional_role) VALUES
-(LAST_INSERT_ID(), '스핀들에서 발생한 압력 전달'),
-(LAST_INSERT_ID(), '회전 부품과 고정부 사이에서 힘을 매개'),
-(LAST_INSERT_ID(), '국부 마모 방지 및 수명 연장'),
-(LAST_INSERT_ID(), '클램핑 동작의 부드러움 유지');
+(105, '스핀들에서 발생한 압력 전달'),
+(105, '회전 부품과 고정부 사이에서 힘을 매개'),
+(105, '국부 마모 방지 및 수명 연장'),
+(105, '클램핑 동작의 부드러움 유지');
 
 INSERT INTO part_engineering_theory (part_id, engineering_theory) VALUES
-(LAST_INSERT_ID(), '축방향 압축 하중 전달(Axial Load Transfer) 원리'),
-(LAST_INSERT_ID(), '면 접촉을 통한 국부 응력 분산 개념'),
-(LAST_INSERT_ID(), '슬리브 구조에 의한 정렬 유지 이론');
+(105, '축방향 압축 하중 전달(Axial Load Transfer) 원리'),
+(105, '면 접촉을 통한 국부 응력 분산 개념'),
+(105, '슬리브 구조에 의한 정렬 유지 이론');
 
 INSERT INTO part_material (part_id, material) VALUES
-(LAST_INSERT_ID(), '강철(Steel)'),
-(LAST_INSERT_ID(), '경화강 또는 표면 열처리 강재'),
-(LAST_INSERT_ID(), '청동(Bronze)');
+(105, '강철(Steel)'),
+(105, '경화강 또는 표면 열처리 강재'),
+(105, '청동(Bronze)');
 
 INSERT INTO part_learning_topic (part_id, learning_topic) VALUES
-(LAST_INSERT_ID(), '압력 전달 부시 역할'),
-(LAST_INSERT_ID(), '축방향 하중 전달'),
-(LAST_INSERT_ID(), '마모 저감 재료(청동) 적용');
+(105, '압력 전달 부시 역할'),
+(105, '축방향 하중 전달'),
+(105, '마모 저감 재료(청동) 적용');
 
 -- 1. Rotary Base
 INSERT INTO part (model_id, code, name, english_name, category, description, hover_description, metadata, image_url)
@@ -1557,6 +1196,8 @@ VALUES (4, 'rotary_base', '회전 베이스', 'Rotary Base', '단일 부품', '�
     ]
   }
 }', 'https://blaybus777-s3.s3.ap-northeast-2.amazonaws.com/robot_arm/Rotary+Base.png');
+
+select * from part_engineering_theory;
 
 INSERT INTO part_functional_role (part_id, functional_role) VALUES
 (LAST_INSERT_ID(), '로봇 암 전체 지지'),
@@ -1983,383 +1624,149 @@ VALUES (5, 'base_gear', '베이스 기어', 'Base Gear', '단일 부품', '로�
 }', 'https://blaybus777-s3.s3.ap-northeast-2.amazonaws.com/robot_gripper/Base+Gear.png');
 
 INSERT INTO part_functional_role (part_id, functional_role) VALUES
-    (LAST_INSERT_ID(), '구동원의 회전을 기구부로 전달'),
-(LAST_INSERT_ID(), '전체 집게 동작의 기준 회전 제공'),
-(LAST_INSERT_ID(), '다른 기어들과의 동기화 유지');
+    (87, '구동원의 회전을 기구부로 전달'),
+(87, '전체 집게 동작의 기준 회전 제공'),
+(87, '다른 기어들과의 동기화 유지');
 
 INSERT INTO part_engineering_theory (part_id, engineering_theory) VALUES
-    (LAST_INSERT_ID(), '기어 맞물림에 의한 회전력 전달 원리'),
-(LAST_INSERT_ID(), '회전 속도 및 토크 변환 개념');
+    (87, '기어 맞물림에 의한 회전력 전달 원리'),
+(87, '회전 속도 및 토크 변환 개념');
 
 INSERT INTO part_material (part_id, material) VALUES
-    (LAST_INSERT_ID(), '엔지니어링 플라스틱'),
-(LAST_INSERT_ID(), '알루미늄'),
-(LAST_INSERT_ID(), '강철');
+    (87, '엔지니어링 플라스틱'),
+(87, '알루미늄'),
+(87, '강철');
 
 INSERT INTO part_learning_topic (part_id, learning_topic) VALUES
-    (LAST_INSERT_ID(), '기어 구동 기초'),
-(LAST_INSERT_ID(), '토크 전달 메커니즘');
+(87, '기어 구동 기초'),
+(87, '토크 전달 메커니즘');
 
--- 2. Base Mounting Bracket
-INSERT INTO part (model_id, code, name, english_name, category, description, hover_description, metadata, image_url)
-VALUES (5, 'base_mounting_bracket', '베이스 장착 브래킷', 'Base Mounting Bracket', '단일 부품', '로봇 집게를 로봇 암 또는 베이스에 고정하는 장착 브래킷으로 구조적 기준 위치를 형성한다', '그리퍼를 외부에 고정', '{
-  "object_id": "base_mounting_bracket",
-  "object_name": "베이스 장착 브래킷",
-  "english_name": "Base Mounting Bracket",
-  "object_category": "단일 부품",
-
-  "description": "로봇 집게를 로봇 암 또는 베이스에 고정하는 장착 브래킷으로 구조적 기준 위치를 형성한다",
-
-  "functional_roles": [
-    "로봇 집게를 외부 구조물에 고정",
-    "구동 중 발생하는 반력 지지",
-    "전체 그리퍼 정렬 유지"
-  ],
-
-  "key_engineering_theories": [
-    "고정 지지 구조(Fixed Support) 개념",
-    "하중 전달 경로 설계 원리"
-  ],
-
-  "common_materials": [
-    "알루미늄 합금",
-    "강철"
-  ],
-
-  "educational_usage": {
-    "learning_topics": [
-      "고정 지지 구조",
-      "하중 전달 설계"
-    ]
-  }
-}', 'https://blaybus777-s3.s3.ap-northeast-2.amazonaws.com/robot_gripper/Base+Mounting+Bracket.png');
 
 INSERT INTO part_functional_role (part_id, functional_role) VALUES
-    (LAST_INSERT_ID(), '로봇 집게를 외부 구조물에 고정'),
-(LAST_INSERT_ID(), '구동 중 발생하는 반력 지지'),
-(LAST_INSERT_ID(), '전체 그리퍼 정렬 유지');
+    (88, '로봇 집게를 외부 구조물에 고정'),
+(88, '구동 중 발생하는 반력 지지'),
+(88, '전체 그리퍼 정렬 유지');
 
 INSERT INTO part_engineering_theory (part_id, engineering_theory) VALUES
-    (LAST_INSERT_ID(), '고정 지지 구조(Fixed Support) 개념'),
-(LAST_INSERT_ID(), '하중 전달 경로 설계 원리');
+    (88, '고정 지지 구조(Fixed Support) 개념'),
+(88, '하중 전달 경로 설계 원리');
 
 INSERT INTO part_material (part_id, material) VALUES
-    (LAST_INSERT_ID(), '알루미늄 합금'),
-(LAST_INSERT_ID(), '강철');
+    (88, '알루미늄 합금'),
+(88, '강철');
 
 INSERT INTO part_learning_topic (part_id, learning_topic) VALUES
-    (LAST_INSERT_ID(), '고정 지지 구조'),
-(LAST_INSERT_ID(), '하중 전달 설계');
+    (88, '고정 지지 구조'),
+(88, '하중 전달 설계');
 
--- 3. Base Plate
-INSERT INTO part (model_id, code, name, english_name, category, description, hover_description, metadata, image_url)
-VALUES (5, 'base_plate', '베이스 플레이트', 'Base Plate', '단일 부품', '로봇 집게 내부 부품들이 장착되는 평판 구조물로, 기어 및 링크를 지지하는 기초 프레임', '기구를 지지하는 베이스', '{
-  "object_id": "base_plate",
-  "object_name": "베이스 플레이트",
-  "english_name": "Base Plate",
-  "object_category": "단일 부품",
-
-  "description": "로봇 집게 내부 부품들이 장착되는 평판 구조물로, 기어 및 링크를 지지하는 기초 프레임",
-
-  "functional_roles": [
-    "기어와 링크를 정확한 위치에 고정",
-    "전체 구조 강성 확보",
-    "기구 동작의 기준 프레임 제공"
-  ],
-
-  "key_engineering_theories": [
-    "평면 기준면(Reference Plane) 개념",
-    "하중 분산 지지 구조 원리"
-  ],
-
-  "common_materials": [
-    "알루미늄",
-    "강철"
-  ],
-
-  "educational_usage": {
-    "learning_topics": [
-      "기초 프레임 설계",
-      "기준면 개념"
-    ]
-  }
-}', 'https://blaybus777-s3.s3.ap-northeast-2.amazonaws.com/robot_gripper/Base+Plate.png');
 
 INSERT INTO part_functional_role (part_id, functional_role) VALUES
-    (LAST_INSERT_ID(), '기어와 링크를 정확한 위치에 고정'),
-(LAST_INSERT_ID(), '전체 구조 강성 확보'),
-(LAST_INSERT_ID(), '기구 동작의 기준 프레임 제공');
+    (89, '기어와 링크를 정확한 위치에 고정'),
+(89, '전체 구조 강성 확보'),
+(89, '기구 동작의 기준 프레임 제공');
 
 INSERT INTO part_engineering_theory (part_id, engineering_theory) VALUES
-    (LAST_INSERT_ID(), '평면 기준면(Reference Plane) 개념'),
-(LAST_INSERT_ID(), '하중 분산 지지 구조 원리');
+    (89, '평면 기준면(Reference Plane) 개념'),
+(89, '하중 분산 지지 구조 원리');
 
 INSERT INTO part_material (part_id, material) VALUES
-    (LAST_INSERT_ID(), '알루미늄'),
-(LAST_INSERT_ID(), '강철');
+    (89, '알루미늄'),
+(89, '강철');
 
 INSERT INTO part_learning_topic (part_id, learning_topic) VALUES
-    (LAST_INSERT_ID(), '기초 프레임 설계'),
-(LAST_INSERT_ID(), '기준면 개념');
+    (89, '기초 프레임 설계'),
+(89, '기준면 개념');
 
--- 4. Gear Link 1
-INSERT INTO part (model_id, code, name, english_name, category, description, hover_description, metadata, image_url)
-VALUES (5, 'gear_link_1', '기어 링크 1', 'Gear Link 1', '단일 부품', '기어의 회전 운동을 링크 운동으로 변환하는 첫 번째 연결 부품', '회전을 링크로 변환', '{
-  "object_id": "gear_link_1",
-  "object_name": "기어 링크 1",
-  "english_name": "Gear Link 1",
-  "object_category": "단일 부품",
-
-  "description": "기어의 회전 운동을 링크 운동으로 변환하는 첫 번째 연결 부품",
-
-  "functional_roles": [
-    "기어 회전을 링크 시스템으로 전달",
-    "집게 개폐 초기 운동 생성",
-    "기구 동작 타이밍 제어"
-  ],
-
-  "key_engineering_theories": [
-    "회전 운동 → 병진/각운동 변환 원리",
-    "기어-링크 연동 메커니즘"
-  ],
-
-  "common_materials": [
-    "플라스틱",
-    "알루미늄"
-  ],
-
-  "educational_usage": {
-    "learning_topics": [
-      "운동 변환 메커니즘",
-      "기어-링크 연계"
-    ]
-  }
-}', 'https://blaybus777-s3.s3.ap-northeast-2.amazonaws.com/robot_gripper/Gear+Link+1.png');
 
 INSERT INTO part_functional_role (part_id, functional_role) VALUES
-    (LAST_INSERT_ID(), '기어 회전을 링크 시스템으로 전달'),
-(LAST_INSERT_ID(), '집게 개폐 초기 운동 생성'),
-(LAST_INSERT_ID(), '기구 동작 타이밍 제어');
+    (90, '기어 회전을 링크 시스템으로 전달'),
+(90, '집게 개폐 초기 운동 생성'),
+(90, '기구 동작 타이밍 제어');
 
 INSERT INTO part_engineering_theory (part_id, engineering_theory) VALUES
-    (LAST_INSERT_ID(), '회전 운동 → 병진/각운동 변환 원리'),
-(LAST_INSERT_ID(), '기어-링크 연동 메커니즘');
+    (90, '회전 운동 → 병진/각운동 변환 원리'),
+(90, '기어-링크 연동 메커니즘');
 
 INSERT INTO part_material (part_id, material) VALUES
-    (LAST_INSERT_ID(), '플라스틱'),
-(LAST_INSERT_ID(), '알루미늄');
+    (90, '플라스틱'),
+(90, '알루미늄');
 
 INSERT INTO part_learning_topic (part_id, learning_topic) VALUES
-    (LAST_INSERT_ID(), '운동 변환 메커니즘'),
-(LAST_INSERT_ID(), '기어-링크 연계');
+    (90, '운동 변환 메커니즘'),
+(90, '기어-링크 연계');
 
--- 5. Gear Link 2
-INSERT INTO part (model_id, code, name, english_name, category, description, hover_description, metadata, image_url)
-VALUES (5, 'gear_link_2', '기어 링크 2', 'Gear Link 2', '단일 부품', '두 번째 단계의 기어-링크 연결 부품으로 좌우 집게 동작을 동기화한다', '좌우 집게 동작 동기화', '{
-  "object_id": "gear_link_2",
-  "object_name": "기어 링크 2",
-  "english_name": "Gear Link 2",
-  "object_category": "단일 부품",
-
-  "description": "두 번째 단계의 기어-링크 연결 부품으로 좌우 집게 동작을 동기화한다",
-
-  "functional_roles": [
-    "좌우 집게 동작 균형 전달",
-    "힘 분배 조절",
-    "파지 안정성 향상"
-  ],
-
-  "key_engineering_theories": [
-    "대칭 링크 구조 개념",
-    "동기 운동(Synchronous Motion) 원리"
-  ],
-
-  "common_materials": [
-    "플라스틱",
-    "알루미늄"
-  ],
-
-  "educational_usage": {
-    "learning_topics": [
-      "동기 링크 설계",
-      "대칭 구조 메커니즘"
-    ]
-  }
-}', 'https://blaybus777-s3.s3.ap-northeast-2.amazonaws.com/robot_gripper/Gear+Link+2.png');
 
 INSERT INTO part_functional_role (part_id, functional_role) VALUES
-    (LAST_INSERT_ID(), '좌우 집게 동작 균형 전달'),
-(LAST_INSERT_ID(), '힘 분배 조절'),
-(LAST_INSERT_ID(), '파지 안정성 향상');
+    (91, '좌우 집게 동작 균형 전달'),
+(91, '힘 분배 조절'),
+(91, '파지 안정성 향상');
 
 INSERT INTO part_engineering_theory (part_id, engineering_theory) VALUES
-    (LAST_INSERT_ID(), '대칭 링크 구조 개념'),
-(LAST_INSERT_ID(), '동기 운동(Synchronous Motion) 원리');
+    (91, '대칭 링크 구조 개념'),
+(91, '동기 운동(Synchronous Motion) 원리');
 
 INSERT INTO part_material (part_id, material) VALUES
-    (LAST_INSERT_ID(), '플라스틱'),
-(LAST_INSERT_ID(), '알루미늄');
+    (91, '플라스틱'),
+(91, '알루미늄');
 
 INSERT INTO part_learning_topic (part_id, learning_topic) VALUES
-    (LAST_INSERT_ID(), '동기 링크 설계'),
-(LAST_INSERT_ID(), '대칭 구조 메커니즘');
+    (91, '동기 링크 설계'),
+(91, '대칭 구조 메커니즘');
 
--- 6. Gripper
-INSERT INTO part (model_id, code, name, english_name, category, description, hover_description, metadata, image_url)
-VALUES (5, 'gripper', '집게', 'Gripper', '단일 부품', '물체를 직접 집는 로봇 집게의 말단 부품으로 작업 대상과 직접 접촉한다', '물체를 직접 파지', '{
-  "object_id": "gripper",
-  "object_name": "집게",
-  "english_name": "Gripper",
-  "object_category": "단일 부품",
-
-  "description": "물체를 직접 집는 로봇 집게의 말단 부품으로 작업 대상과 직접 접촉한다",
-
-  "functional_roles": [
-    "물체 파지 및 고정",
-    "미끄럼 방지",
-    "작업 정확도 결정"
-  ],
-
-  "key_engineering_theories": [
-    "마찰 기반 파지 원리",
-    "레버 작용에 의한 파지력 증폭"
-  ],
-
-  "common_materials": [
-    "플라스틱",
-    "고무 코팅",
-    "표면 텍스처 적용 소재"
-  ],
-
-  "educational_usage": {
-    "learning_topics": [
-      "파지 메커니즘",
-      "마찰과 접촉 설계"
-    ]
-  }
-}
-', 'https://blaybus777-s3.s3.ap-northeast-2.amazonaws.com/robot_gripper/Gripper.png');
 
 INSERT INTO part_functional_role (part_id, functional_role) VALUES
-    (LAST_INSERT_ID(), '물체 파지 및 고정'),
-(LAST_INSERT_ID(), '미끄럼 방지'),
-(LAST_INSERT_ID(), '작업 정확도 결정');
+    (92, '물체 파지 및 고정'),
+(92, '미끄럼 방지'),
+(92, '작업 정확도 결정');
 
 INSERT INTO part_engineering_theory (part_id, engineering_theory) VALUES
-    (LAST_INSERT_ID(), '마찰 기반 파지 원리'),
-(LAST_INSERT_ID(), '레버 작용에 의한 파지력 증폭');
+    (92, '마찰 기반 파지 원리'),
+(92, '레버 작용에 의한 파지력 증폭');
 
 INSERT INTO part_material (part_id, material) VALUES
-    (LAST_INSERT_ID(), '플라스틱'),
-(LAST_INSERT_ID(), '고무 코팅'),
-(LAST_INSERT_ID(), '표면 텍스처 적용 소재');
+    (92, '플라스틱'),
+(92, '고무 코팅'),
+(92, '표면 텍스처 적용 소재');
 
 INSERT INTO part_learning_topic (part_id, learning_topic) VALUES
-    (LAST_INSERT_ID(), '파지 메커니즘'),
-(LAST_INSERT_ID(), '마찰과 접촉 설계');
+    (92, '파지 메커니즘'),
+(92, '마찰과 접촉 설계');
 
--- 7. Link
-INSERT INTO part (model_id, code, name, english_name, category, description, hover_description, metadata, image_url)
-VALUES (5, 'link', '링크', 'Link', '단일 부품', '로봇 집게 내부에서 힘과 움직임을 전달하는 연결 링크 부품', '힘과 움직임을 전달', '{
-  "object_id": "link",
-  "object_name": "링크",
-  "english_name": "Link",
-  "object_category": "단일 부품",
-
-  "description": "로봇 집게 내부에서 힘과 움직임을 전달하는 연결 링크 부품",
-
-  "functional_roles": [
-    "기어 움직임을 집게로 전달",
-    "집게 개폐 경로 형성",
-    "반복 동작 신뢰성 유지"
-  ],
-
-  "key_engineering_theories": [
-    "링크 메커니즘(Linkage Mechanism)",
-    "다절 링크 운동 전달 원리"
-  ],
-
-  "common_materials": [
-    "플라스틱",
-    "알루미늄"
-  ],
-
-  "educational_usage": {
-    "learning_topics": [
-      "링크 기구학",
-      "운동 전달 구조"
-    ]
-  }
-}', 'https://blaybus777-s3.s3.ap-northeast-2.amazonaws.com/robot_gripper/Link.png');
 
 INSERT INTO part_functional_role (part_id, functional_role) VALUES
-    (LAST_INSERT_ID(), '기어 움직임을 집게로 전달'),
-(LAST_INSERT_ID(), '집게 개폐 경로 형성'),
-(LAST_INSERT_ID(), '반복 동작 신뢰성 유지');
+    (93, '기어 움직임을 집게로 전달'),
+(93, '집게 개폐 경로 형성'),
+(93, '반복 동작 신뢰성 유지');
 
 INSERT INTO part_engineering_theory (part_id, engineering_theory) VALUES
-    (LAST_INSERT_ID(), '링크 메커니즘(Linkage Mechanism)'),
-(LAST_INSERT_ID(), '다절 링크 운동 전달 원리');
+    (93, '링크 메커니즘(Linkage Mechanism)'),
+(93, '다절 링크 운동 전달 원리');
 
 INSERT INTO part_material (part_id, material) VALUES
-    (LAST_INSERT_ID(), '플라스틱'),
-(LAST_INSERT_ID(), '알루미늄');
+    (93, '플라스틱'),
+(93, '알루미늄');
 
 INSERT INTO part_learning_topic (part_id, learning_topic) VALUES
-    (LAST_INSERT_ID(), '링크 기구학'),
-(LAST_INSERT_ID(), '운동 전달 구조');
+    (93, '링크 기구학'),
+(93, '운동 전달 구조');
 
--- 8. Pin
-INSERT INTO part (model_id, code, name, english_name, category, description, hover_description, metadata, image_url)
-VALUES (5, 'pin', '핀', 'Pin', '단일 부품', '링크와 기어를 회전 가능하게 연결하는 축 부품으로 모든 관절의 회전 중심 역할을 한다', '회전 관절의 축 역할', '{
-  "object_id": "pin",
-  "object_name": "핀",
-  "english_name": "Pin",
-  "object_category": "단일 부품",
-
-  "description": "링크와 기어를 회전 가능하게 연결하는 축 부품으로 모든 관절의 회전 중심 역할을 한다",
-
-  "functional_roles": [
-    "회전축 형성",
-    "기구 자유도 제공",
-    "구조 결합 안정성 확보"
-  ],
-
-  "key_engineering_theories": [
-    "회전 관절(Revolute Joint) 개념",
-    "전단 하중 지지 원리"
-  ],
-
-  "common_materials": [
-    "강철",
-    "스테인리스강"
-  ],
-
-  "educational_usage": {
-    "learning_topics": [
-      "회전 관절 구조",
-      "전단 하중과 내구 설계"
-    ]
-  }
-}
-', 'https://blaybus777-s3.s3.ap-northeast-2.amazonaws.com/robot_gripper/Pin.png');
 
 INSERT INTO part_functional_role (part_id, functional_role) VALUES
-    (LAST_INSERT_ID(), '회전축 형성'),
-(LAST_INSERT_ID(), '기구 자유도 제공'),
-(LAST_INSERT_ID(), '구조 결합 안정성 확보');
+    (94, '회전축 형성'),
+(94, '기구 자유도 제공'),
+(94, '구조 결합 안정성 확보');
 
 INSERT INTO part_engineering_theory (part_id, engineering_theory) VALUES
-    (LAST_INSERT_ID(), '회전 관절(Revolute Joint) 개념'),
-(LAST_INSERT_ID(), '전단 하중 지지 원리');
+    (94, '회전 관절(Revolute Joint) 개념'),
+(94, '전단 하중 지지 원리');
 
 INSERT INTO part_material (part_id, material) VALUES
-    (LAST_INSERT_ID(), '강철'),
-(LAST_INSERT_ID(), '스테인리스강');
+    (94, '강철'),
+(94, '스테인리스강');
 
 INSERT INTO part_learning_topic (part_id, learning_topic) VALUES
-    (LAST_INSERT_ID(), '회전 관절 구조'),
-(LAST_INSERT_ID(), '전단 하중과 내구 설계');
+    (94, '회전 관절 구조'),
+(94, '전단 하중과 내구 설계');
 
 -- 1. BASE
 INSERT INTO part (model_id, code, name, english_name, category, description, hover_description, metadata, image_url)
@@ -2396,225 +1803,93 @@ VALUES (6, 'base', '베이스', 'Base', '단일 부품', '서스펜션 하부에
 }', 'https://blaybus777-s3.s3.ap-northeast-2.amazonaws.com/suspension/BASE.png');
 
 INSERT INTO part_functional_role (part_id, functional_role) VALUES
-    (LAST_INSERT_ID(), '서스펜션 전체를 하부 구조에 고정'),
-(LAST_INSERT_ID(), '스프링 및 로드에서 전달되는 하중 지지'),
-(LAST_INSERT_ID(), '시스템 정렬 기준점 형성');
+    (71, '서스펜션 전체를 하부 구조에 고정'),
+(71, '스프링 및 로드에서 전달되는 하중 지지'),
+(71, '시스템 정렬 기준점 형성');
 
 INSERT INTO part_engineering_theory (part_id, engineering_theory) VALUES
-    (LAST_INSERT_ID(), '고정 지지 구조(Fixed Support) 원리'),
-(LAST_INSERT_ID(), '하중 전달 경로 설계 개념');
+    (71, '고정 지지 구조(Fixed Support) 원리'),
+(71, '하중 전달 경로 설계 개념');
 
 INSERT INTO part_material (part_id, material) VALUES
-    (LAST_INSERT_ID(), '알루미늄 합금'),
-(LAST_INSERT_ID(), '강철');
+    (71, '알루미늄 합금'),
+(71, '강철');
 
 INSERT INTO part_learning_topic (part_id, learning_topic) VALUES
-    (LAST_INSERT_ID(), '고정 지지 구조'),
-(LAST_INSERT_ID(), '하중 전달 설계');
+    (71, '고정 지지 구조'),
+(71, '하중 전달 설계');
 
--- 2. NIT
-INSERT INTO part (model_id, code, name, english_name, category, description, hover_description, metadata, image_url)
-VALUES (6, 'nit', '가이드 부품', 'NIT', '단일 부품', '서스펜션 내부에서 축 방향 움직임을 안내하며 로드와 스프링의 정렬을 유지하는 가이드 부품', '로드 직선 운동 안내', '{
-  "object_id": "nit",
-  "object_name": "가이드 부품",
-  "english_name": "NIT",
-  "object_category": "단일 부품",
-
-  "description": "서스펜션 내부에서 축 방향 움직임을 안내하며 로드와 스프링의 정렬을 유지하는 가이드 부품",
-
-  "functional_roles": [
-    "로드의 직선 운동 안내",
-    "스프링 압축 시 흔들림 방지",
-    "내부 부품 정렬 유지"
-  ],
-
-  "key_engineering_theories": [
-    "축 정렬(Coaxial Alignment) 개념",
-    "슬라이딩 가이드 구조 원리"
-  ],
-
-  "common_materials": [
-    "알루미늄 합금",
-    "엔지니어링 플라스틱"
-  ],
-
-  "educational_usage": {
-    "learning_topics": [
-      "축 정렬 설계",
-      "슬라이딩 가이드 구조"
-    ]
-  }
-}', 'https://blaybus777-s3.s3.ap-northeast-2.amazonaws.com/suspension/NIT.png');
 
 INSERT INTO part_functional_role (part_id, functional_role) VALUES
-    (LAST_INSERT_ID(), '로드의 직선 운동 안내'),
-(LAST_INSERT_ID(), '스프링 압축 시 흔들림 방지'),
-(LAST_INSERT_ID(), '내부 부품 정렬 유지');
+    (72, '로드의 직선 운동 안내'),
+(72, '스프링 압축 시 흔들림 방지'),
+(72, '내부 부품 정렬 유지');
 
 INSERT INTO part_engineering_theory (part_id, engineering_theory) VALUES
-    (LAST_INSERT_ID(), '축 정렬(Coaxial Alignment) 개념'),
-(LAST_INSERT_ID(), '슬라이딩 가이드 구조 원리');
+    (72, '축 정렬(Coaxial Alignment) 개념'),
+(72, '슬라이딩 가이드 구조 원리');
 
 INSERT INTO part_material (part_id, material) VALUES
-    (LAST_INSERT_ID(), '알루미늄 합금'),
-(LAST_INSERT_ID(), '엔지니어링 플라스틱');
+    (72, '알루미늄 합금'),
+(72, '엔지니어링 플라스틱');
 
 INSERT INTO part_learning_topic (part_id, learning_topic) VALUES
-    (LAST_INSERT_ID(), '축 정렬 설계'),
-(LAST_INSERT_ID(), '슬라이딩 가이드 구조');
+    (72, '축 정렬 설계'),
+(72, '슬라이딩 가이드 구조');
 
--- 3. NUT
-INSERT INTO part (model_id, code, name, english_name, category, description, hover_description, metadata, image_url)
-VALUES (6, 'nut', '조절 너트', 'Nut', '단일 부품', '나사 결합을 통해 서스펜션 길이와 스프링 장력을 고정하는 체결 부품', '장력과 위치를 고정', '{
-  "object_id": "nut",
-  "object_name": "조절 너트",
-  "english_name": "Nut",
-  "object_category": "단일 부품",
-
-  "description": "나사 결합을 통해 서스펜션 길이와 스프링 장력을 고정하는 체결 부품",
-
-  "functional_roles": [
-    "로드와 부품 위치 고정",
-    "스프링 예압 유지",
-    "조립 안정성 확보"
-  ],
-
-  "key_engineering_theories": [
-    "나사 체결(Threaded Fastening) 원리",
-    "축방향 고정 및 풀림 방지 개념"
-  ],
-
-  "common_materials": [
-    "강철",
-    "알루미늄"
-  ],
-
-  "educational_usage": {
-    "learning_topics": [
-      "나사 체결 원리",
-      "예압(preload) 개념"
-    ]
-  }
-}', 'https://blaybus777-s3.s3.ap-northeast-2.amazonaws.com/suspension/NUT.png');
 
 INSERT INTO part_functional_role (part_id, functional_role) VALUES
-    (LAST_INSERT_ID(), '로드와 부품 위치 고정'),
-(LAST_INSERT_ID(), '스프링 예압 유지'),
-(LAST_INSERT_ID(), '조립 안정성 확보');
+    (73, '로드와 부품 위치 고정'),
+(73, '스프링 예압 유지'),
+(73, '조립 안정성 확보');
 
 INSERT INTO part_engineering_theory (part_id, engineering_theory) VALUES
-    (LAST_INSERT_ID(), '나사 체결(Threaded Fastening) 원리'),
-(LAST_INSERT_ID(), '축방향 고정 및 풀림 방지 개념');
+    (73, '나사 체결(Threaded Fastening) 원리'),
+(73, '축방향 고정 및 풀림 방지 개념');
 
 INSERT INTO part_material (part_id, material) VALUES
-    (LAST_INSERT_ID(), '강철'),
-(LAST_INSERT_ID(), '알루미늄');
+    (73, '강철'),
+(73, '알루미늄');
 
 INSERT INTO part_learning_topic (part_id, learning_topic) VALUES
-    (LAST_INSERT_ID(), '나사 체결 원리'),
-(LAST_INSERT_ID(), '예압(preload) 개념');
+    (73, '나사 체결 원리'),
+(73, '예압(preload) 개념');
 
--- 4. ROD
-INSERT INTO part (model_id, code, name, english_name, category, description, hover_description, metadata, image_url)
-VALUES (6, 'rod', '로드', 'Rod', '단일 부품', '서스펜션 내부에서 하중을 직접 전달하는 중심 축 부품', '하중 전달 중심 축', '{
-  "object_id": "rod",
-  "object_name": "로드",
-  "english_name": "Rod",
-  "object_category": "단일 부품",
-
-  "description": "서스펜션 내부에서 하중을 직접 전달하는 중심 축 부품",
-
-  "functional_roles": [
-    "스프링 하중 전달",
-    "서스펜션 운동 중심 축 역할",
-    "전체 구조 강성 유지"
-  ],
-
-  "key_engineering_theories": [
-    "축방향 하중 전달(Axial Load Transfer)",
-    "직선 운동 구속 원리"
-  ],
-
-  "common_materials": [
-    "강철",
-    "표면 경화 강재"
-  ],
-
-  "educational_usage": {
-    "learning_topics": [
-      "축 부품 설계",
-      "축방향 하중"
-    ]
-  }
-}', 'https://blaybus777-s3.s3.ap-northeast-2.amazonaws.com/suspension/ROD.png');
 
 INSERT INTO part_functional_role (part_id, functional_role) VALUES
-    (LAST_INSERT_ID(), '스프링 하중 전달'),
-(LAST_INSERT_ID(), '서스펜션 운동 중심 축 역할'),
-(LAST_INSERT_ID(), '전체 구조 강성 유지');
+    (74, '스프링 하중 전달'),
+(74, '서스펜션 운동 중심 축 역할'),
+(74, '전체 구조 강성 유지');
 
 INSERT INTO part_engineering_theory (part_id, engineering_theory) VALUES
-    (LAST_INSERT_ID(), '축방향 하중 전달(Axial Load Transfer)'),
-(LAST_INSERT_ID(), '직선 운동 구속 원리');
+    (74, '축방향 하중 전달(Axial Load Transfer)'),
+(74, '직선 운동 구속 원리');
 
 INSERT INTO part_material (part_id, material) VALUES
-    (LAST_INSERT_ID(), '강철'),
-(LAST_INSERT_ID(), '표면 경화 강재');
+    (74, '강철'),
+(74, '표면 경화 강재');
 
 INSERT INTO part_learning_topic (part_id, learning_topic) VALUES
-    (LAST_INSERT_ID(), '축 부품 설계'),
-(LAST_INSERT_ID(), '축방향 하중');
+    (74, '축 부품 설계'),
+(74, '축방향 하중');
 
--- 5. SPRING
-INSERT INTO part (model_id, code, name, english_name, category, description, hover_description, metadata, image_url)
-VALUES (6, 'spring', '코일 스프링', 'Spring', '단일 부품', '압축 변형을 통해 충격 에너지를 저장하고 방출하는 탄성 부품', '충격을 흡수·복원', '{
-  "object_id": "spring",
-  "object_name": "코일 스프링",
-  "english_name": "Spring",
-  "object_category": "단일 부품",
-
-  "description": "압축 변형을 통해 충격 에너지를 저장하고 방출하는 탄성 부품",
-
-  "functional_roles": [
-    "외부 충격 흡수",
-    "탄성 복원 수행",
-    "시스템 안정성 향상"
-  ],
-
-  "key_engineering_theories": [
-    "훅의 법칙(Hooke’s Law)",
-    "탄성 변형에 의한 에너지 저장 원리"
-  ],
-
-  "common_materials": [
-    "스프링강",
-    "열처리 강재"
-  ],
-
-  "educational_usage": {
-    "learning_topics": [
-      "탄성체 거동",
-      "스프링 설계 기초"
-    ]
-  }
-}', 'https://blaybus777-s3.s3.ap-northeast-2.amazonaws.com/suspension/SPRING.png');
 
 INSERT INTO part_functional_role (part_id, functional_role) VALUES
-    (LAST_INSERT_ID(), '외부 충격 흡수'),
-(LAST_INSERT_ID(), '탄성 복원 수행'),
-(LAST_INSERT_ID(), '시스템 안정성 향상');
+    (75, '외부 충격 흡수'),
+(75, '탄성 복원 수행'),
+(75, '시스템 안정성 향상');
 
 INSERT INTO part_engineering_theory (part_id, engineering_theory) VALUES
-    (LAST_INSERT_ID(), '훅의 법칙(Hooke''s Law)'),
-(LAST_INSERT_ID(), '탄성 변형에 의한 에너지 저장 원리');
+    (75, '훅의 법칙(Hooke''s Law)'),
+(75, '탄성 변형에 의한 에너지 저장 원리');
 
 INSERT INTO part_material (part_id, material) VALUES
-    (LAST_INSERT_ID(), '스프링강'),
-(LAST_INSERT_ID(), '열처리 강재');
+    (75, '스프링강'),
+(75, '열처리 강재');
 
 INSERT INTO part_learning_topic (part_id, learning_topic) VALUES
-    (LAST_INSERT_ID(), '탄성체 거동'),
-(LAST_INSERT_ID(), '스프링 설계 기초');
+    (75, '탄성체 거동'),
+(75, '스프링 설계 기초');
 
 -- 1. Connecting Rod Cap
 INSERT INTO part (model_id, code, name, english_name, category, description, hover_description, metadata, image_url)
