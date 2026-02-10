@@ -12,12 +12,15 @@ public record AIQuestionRequest(
     @Schema(description = "부품 ID")
     Long partId,
 
-    @Schema(description = "질문", example = "이건 뭐야?")
+    @Schema(description = "질문", example = "가장 중요한 설계 요소는 무엇인가요?")
     String question,
 
     @Schema(description = "퀵액션/질문/AI답변", example = "QUICK")
-    AIContentType contentType,
+    AIContentType contentType
 
-    @Schema(description = "코드", example = "base_structure_group")
-    String code
+//    @Schema(description = "코드", example = "base_structure_group")
+//    String code
+
+//    @Schema(description = "게층 ID")
+//    Long id
 ) { }

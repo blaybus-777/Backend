@@ -83,7 +83,7 @@ public class AssistantService {
         if (request.contentType().equals(AIContentType.QUICK)) {
             ListPartResponse listPartRes = partService.getPartList(request.modelId(), false);
             listPartRes.getItems().forEach(item -> {
-                if (item.getHierarchyLevel() == 1 && item.getCode().equals(request.code())) {
+                if (item.getHierarchyLevel() == 1 && item.getPartId().equals(request.partId())) {
                     Long partId = item.getPartId();
                     Part partEntity = partRepository.findById(partId)
                         .orElseThrow(() -> new BusinessException(ErrorCode.ENTITY_NOT_FOUND));
