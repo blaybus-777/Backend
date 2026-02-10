@@ -75,8 +75,10 @@ public class AssistantService {
 
         Part part;
         if (!request.partId().equals(0L)) {
+            System.out.println("부품");
             part = partRepository.findById(request.partId())
                 .orElseThrow(() -> new BusinessException(ErrorCode.ENTITY_NOT_FOUND));
+            System.out.println(part.getChildren().size());
         } else {
             part = null;
         }
@@ -203,9 +205,11 @@ public class AssistantService {
                 });
             }
 
-
+            System.out.println("----------------");
             if (!Objects.requireNonNull(part).getChildren().isEmpty()) {
                 part.getChildren().forEach(c -> {
+                    System.out.println(c.getMetadata());
+                    System.out.println(c.getImageUrl());
                     if (part.getImageUrl() != null) {
                         // 특정 메타데이터 파일
                         System.out.println(part.getImageUrl());
@@ -363,11 +367,22 @@ public class AssistantService {
                        - "메타데이터"라는 단어 금지
                        - 의미 추측
                        - 일반적인 공학 상식으로 보완
-                       - 가장 가능성이 높은 해석 제시
                     
-                       정보가 없거나 불명확하면 반드시 다음 형식으로 답하세요:
-                       "현재 화면의 오브젝트 및 공학적 학습 주제와는 직접적인 연관이 없는 질문입니다. 화면과 관련된 공학적 질문을 해 주시면 설명드리겠습니다."
+                       모호한 질문 처리 규칙 (매우 중요)
+                       질문에 대상이 명시되지 않았더라도,
+                       다음 기준으로 가장 가능성이 높은 부품 또는 기능을 하나 선택하여 먼저 설명한다.
+                       • 메타데이터에서 중심 구조 또는 상위 부품
+                       • 화면에서 가장 큰 비중을 차지하는 구조
+                       • 시스템 기능 수행의 핵심 역할을 담당하는 구성요소
+                    
+                       정보가 일부 부족하더라도 일반적인 추가 질문으로 답변을 회피하지 않는다.
+                       반드시 공학적으로 타당한 범위 내에서 결론을 먼저 설명한다.
+                    
+                       추가 확인이 필요한 경우에만,
+                       답변 마지막에 한 문장으로 확인 질문을 덧붙인다.
                     """;
+//            정보가 없거나 불명확하면 반드시 다음 형식으로 답하세요:
+//            "현재 화면의 오브젝트 및 공학적 학습 주제와는 직접적인 연관이 없는 질문입니다. 화면과 관련된 공학적 질문을 해 주시면 설명드리겠습니다."
 
             TextRequestBody requestBody = TextRequestBody.builder()
                     .model("gpt-5-mini")
