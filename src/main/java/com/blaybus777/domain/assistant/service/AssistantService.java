@@ -215,31 +215,36 @@ public class AssistantService {
                             )
                         ).build()
                 );
-                requestJson.add(
-                    TextRequestInputList.builder()
-                        .role("user")
-                        .content(
-                            List.of(
-                                InputBody.builder()
-                                    .type("input_text")
-                                    .text(isModel ? model.getMetadata() : part.getMetadata())
-                                    .build()
-                            )
-                        ).build()
-                );
+
+                if (part.getMetadata() != null) {
+                    requestJson.add(
+                        TextRequestInputList.builder()
+                            .role("user")
+                            .content(
+                                List.of(
+                                    InputBody.builder()
+                                        .type("input_text")
+                                        .text(isModel ? model.getMetadata() : part.getMetadata())
+                                        .build()
+                                )
+                            ).build()
+                    );
+                }
             } else {
-                requestJson.add(
-                    TextRequestInputList.builder()
-                        .role("user")
-                        .content(
-                            List.of(
-                                InputBody.builder()
-                                    .type("input_text")
-                                    .text(isModel ? model.getMetadata() : part.getMetadata())
-                                    .build()
-                            )
-                        ).build()
-                );
+                if (part.getMetadata() != null) {
+                    requestJson.add(
+                        TextRequestInputList.builder()
+                            .role("user")
+                            .content(
+                                List.of(
+                                    InputBody.builder()
+                                        .type("input_text")
+                                        .text(isModel ? model.getMetadata() : part.getMetadata())
+                                        .build()
+                                )
+                            ).build()
+                    );
+                }
             }
 
             // 질문
