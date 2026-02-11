@@ -86,6 +86,7 @@ public class AssistantService {
         // 퀵액션
         AtomicReference<String> res = new AtomicReference<>();
         if (request.contentType().equals(AIContentType.QUICK)) {
+            System.out.println("QUICK Action");
             ListPartResponse listPartRes = partService.getPartList(request.modelId(), false);
             listPartRes.getItems().forEach(item -> {
                 if (item.getHierarchyLevel() == 1 && item.getPartId().equals(request.partId())) {
