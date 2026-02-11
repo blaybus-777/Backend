@@ -278,6 +278,19 @@ public class AssistantService {
                 }
             } else {
                 requestJson.add(
+                    ImageRequestInputList.builder()
+                        .role("user")
+                        .content(
+                            List.of(
+                                ImageInputBody.builder()
+                                    .type("input_image")
+                                    .image_url(isModel ? model.getImageUrl() : part.getImageUrl())
+                                    .build()
+                            )
+                        ).build()
+                );
+
+                requestJson.add(
                     TextRequestInputList.builder()
                         .role("user")
                         .content(
