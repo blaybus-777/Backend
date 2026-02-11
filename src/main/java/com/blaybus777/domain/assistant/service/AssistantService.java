@@ -206,7 +206,7 @@ public class AssistantService {
             }
 
             System.out.println("----------------");
-            if (!Objects.requireNonNull(part).getChildren().isEmpty()) {
+            if (part != null && !part.getChildren().isEmpty()) {
                 part.getChildren().forEach(c -> {
                     System.out.println(c.getMetadata());
                     System.out.println(c.getImageUrl());
@@ -247,7 +247,7 @@ public class AssistantService {
 
 
             boolean isModel = (part == null);
-            if (part.getImageUrl() != null) {
+            if (part != null && part.getImageUrl() != null) {
                 // 특정 메타데이터 파일
                 requestJson.add(
                     ImageRequestInputList.builder()
