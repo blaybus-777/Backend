@@ -277,20 +277,18 @@ public class AssistantService {
                     );
                 }
             } else {
-                if (part.getMetadata() != null) {
-                    requestJson.add(
-                        TextRequestInputList.builder()
-                            .role("user")
-                            .content(
-                                List.of(
-                                    InputBody.builder()
-                                        .type("input_text")
-                                        .text(isModel ? model.getMetadata() : part.getMetadata())
-                                        .build()
-                                )
-                            ).build()
-                    );
-                }
+                requestJson.add(
+                    TextRequestInputList.builder()
+                        .role("user")
+                        .content(
+                            List.of(
+                                InputBody.builder()
+                                    .type("input_text")
+                                    .text(isModel ? model.getMetadata() : part.getMetadata())
+                                    .build()
+                            )
+                        ).build()
+                );
             }
 
             // 질문
