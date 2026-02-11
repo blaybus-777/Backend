@@ -62,6 +62,8 @@ public class AssistantService {
     private final PartRepository partRepository;
     private final PartService partService;
 
+    private final List<Long> quickActionPartIdList = List.of();
+
     /**
      * AI 답변 조회
      * @return AI 답변 반환
@@ -89,29 +91,41 @@ public class AssistantService {
             System.out.println("QUICK Action");
             ListPartResponse listPartRes = partService.getPartList(request.modelId(), false);
             listPartRes.getItems().forEach(item -> {
-                if (item.getHierarchyLevel() == 1 && item.getPartId().equals(request.partId())) {
-                    Long partId = item.getPartId();
-                    Part partEntity = partRepository.findById(partId)
-                        .orElseThrow(() -> new BusinessException(ErrorCode.ENTITY_NOT_FOUND));
+                item.getChildren().forEach(child -> {
+                    System.out.println(item.getPartId());
+                    System.out.println(item.getName());
+                    System.out.println(child.getPartId());
+                    System.out.println(child.getName());
+                    System.out.println("------------------");
 
-                    try {
-                        JsonNode json = objectMapper.readTree(partEntity.getQuickMetadata());
+                    if (child.getPartId().equals(request.partId())) {
+                        System.out.println("여기 들어옴?");
+                        Long partId = child.getPartId();
+                        Part partEntity = partRepository.findById(partId)
+                                .orElseThrow(() -> new BusinessException(ErrorCode.ENTITY_NOT_FOUND));
 
-                        Map<String, Question> questions = objectMapper.convertValue(
-                                json.get("questions"),
-                                new TypeReference<Map<String, Question>>() {}
-                        );
+                        try {
+                            JsonNode json = objectMapper.readTree(partEntity.getMetadata());
+                            System.out.println(json);
 
-                        List<Question> questionList = new ArrayList<>(questions.values());
-                        questionList.forEach(question -> {
-                            if (question.getQuestion().equals(request.question())) {
-                                res.set(question.getAnswer());
-                            }
-                        });
-                    } catch (JsonProcessingException e) {
-                        throw new RuntimeException(e);
+                            Map<String, Question> questions = objectMapper.convertValue(
+                                    json.get("questions"),
+                                    new TypeReference<Map<String, Question>>() {}
+                            );
+
+                            List<Question> questionList = new ArrayList<>(questions.values());
+                            questionList.forEach(question -> {
+                                if (question.getQuestion().equals(request.question())) {
+                                    res.set(question.getAnswer());
+                                }
+                            });
+                        } catch (JsonProcessingException e) {
+                            throw new RuntimeException(e);
+                        }
                     }
-                }
+                });
+
+
             });
 
             Assistant assistant = assistantRepository.findById(model.getModelId()).orElse(null);
