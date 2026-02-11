@@ -62,7 +62,7 @@ public class AssistantService {
     private final PartRepository partRepository;
     private final PartService partService;
 
-    private final List<Long> quickActionPartIdList = List.of();
+    private final List<Long> quickActionPartIdList = List.of(61L, 62L, 64L, 65L, 66L, 68L);
 
     /**
      * AI 답변 조회
@@ -87,7 +87,7 @@ public class AssistantService {
 
         // 퀵액션
         AtomicReference<String> res = new AtomicReference<>();
-        if (request.contentType().equals(AIContentType.QUICK)) {
+        if (quickActionPartIdList.contains(request.partId()) && request.contentType().equals(AIContentType.QUICK)) {
             System.out.println("QUICK Action");
             ListPartResponse listPartRes = partService.getPartList(request.modelId(), false);
             listPartRes.getItems().forEach(item -> {
